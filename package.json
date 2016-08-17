@@ -1,0 +1,27 @@
+{
+  "name": "LucidityBotApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hudson-prestidge/LucidityBotApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hudson-prestidge/LucidityBotApp/issues"
+  },
+  "homepage": "https://github.com/hudson-prestidge/LucidityBotApp#readme",
+  "devDependencies": {
+    "express": "^4.14.0"
+  },
+  "dependencies": {
+    "knex": "^0.11.10",
+    "pg": "^6.1.0"
+  }
+}
