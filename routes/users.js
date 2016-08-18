@@ -19,6 +19,23 @@ router.get('/', function(req, res) {
     })
 })
 
+router.get('/obnoxious', function(req, res) {
+  db.getMostAnnoyingUsers()
+    .then(function(usersInfo) {
+      console.log(usersInfo)
+      var userIds = [usersInfo[0].user_id]
+      db.getUsersById(userIds)
+      // getusersbyid currently returns the users sorted by id, which means the order that we established from getMostActiveUserIds
+      // is not preserved. Fix this! There are many different ways to approach a solution.
+      .then(function(users){
+        res.send(users)
+      })
+    })
+    .catch(function(err){
+      console.log(err)
+    })
+})
+
 //users who bug the streamer most!
 
 module.exports = router

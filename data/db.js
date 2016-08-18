@@ -30,7 +30,16 @@ function getMostUsedWord() {
               })
               return mostUsedWord
             })
+}
 
+function getMostAnnoyingUsers(){
+  return knex.select('user_id')
+        .count('*')
+        .from('messages')
+        .where('text', 'like', '%day9tv%')
+        .groupBy('user_id')
+        .orderBy('count', 'desc')
+        .limit(5)
 }
 
 function getMostActiveUserIds() {
@@ -52,6 +61,7 @@ function getUsersById(ids){
 module.exports = {
   getMostActiveUserIds: getMostActiveUserIds,
   getUsersById: getUsersById,
-  getMostUsedWord: getMostUsedWord
+  getMostUsedWord: getMostUsedWord,
+  getMostAnnoyingUsers: getMostAnnoyingUsers
 
 }
