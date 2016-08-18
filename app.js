@@ -1,5 +1,6 @@
 var express = require('express')
 var users = require('./routes/users')
+var words = require('./routes/words')
 
 var app = express()
 
@@ -11,5 +12,6 @@ app.listen(PORT, function() {
 
 app.use(express.static('public'))
 app.use('/api/v1/users', users)
+app.use('/api/v1/words', words)
 
 module.exports = app

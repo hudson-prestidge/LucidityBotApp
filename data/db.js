@@ -1,6 +1,38 @@
 var config = require('../knexfile').development
 var knex = require('knex')(config)
 
+function getMostUsedWord() {
+  return knex.select('text')
+            .from('messages')
+            .then(function(data){
+              // data is in the form of an array with [{text:''},{text:''}]
+              var wordArray = data.map(function(obj){
+               return obj.text
+             }).join(' ').split(' ')
+              var wordFrequency = {}
+
+              wordArray.map(function(word) {
+                if(wordFrequency[word]){
+                  wordFrequency[word] += 1
+                } else {
+                  wordFrequency[word] = 1
+                }
+              })
+
+              var mostUsedWord = ''
+              var mostWordUses = 0
+
+              Object.keys(wordFrequency).map(function(key){
+                if(wordFrequency[key] > mostWordUses){
+                  mostUsedWord = key
+                  mostWordUses = wordFrequency[key]
+                }
+              })
+              return mostUsedWord
+            })
+
+}
+
 function getMostActiveUserIds() {
       return knex.select('user_id')
             .count('*')
@@ -15,8 +47,11 @@ function getUsersById(ids){
         .whereIn('id', ids)
 }
 
+
+
 module.exports = {
   getMostActiveUserIds: getMostActiveUserIds,
-  getUsersById: getUsersById
+  getUsersById: getUsersById,
+  getMostUsedWord: getMostUsedWord
 
 }
