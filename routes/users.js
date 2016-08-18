@@ -3,9 +3,16 @@ var db = require('../data/db')
 var router = express.Router();
 
 router.get('/', function(req, res) {
-  db.getMostActiveUser()
-    .then(function(user) {
-      res.send(user)
+  db.getMostActiveUserIds()
+    .then(function(usersInfo) {
+      console.log(usersInfo)
+      var userIds = [usersInfo[0].user_id,usersInfo[1].user_id,usersInfo[2].user_id,usersInfo[3].user_id,usersInfo[4].user_id]
+      db.getUsersById(userIds)
+      // getusersbyid currently returns the users sorted by id, which means the order that we established from getMostActiveUserIds
+      // is not preserved. Fix this!
+      .then(function(users){
+        res.send(users)
+      })
     })
     .catch(function(err){
       console.log(err)
