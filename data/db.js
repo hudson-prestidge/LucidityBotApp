@@ -51,16 +51,16 @@ function getMostActiveUserIds() {
             .limit(5)
 }
 
-function getUsersById(ids){
+function getUserById(id){
   return knex('users')
-        .whereIn('id', ids)
+        .where('id', id)
 }
 
 
 
 module.exports = {
   getMostActiveUserIds: getMostActiveUserIds,
-  getUsersById: getUsersById,
+  getUserById: getUserById,
   getMostUsedWord: getMostUsedWord,
   getMostAnnoyingUsers: getMostAnnoyingUsers
 
