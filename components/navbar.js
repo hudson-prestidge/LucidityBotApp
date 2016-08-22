@@ -1,11 +1,11 @@
 import React from 'react'
 
 
-export default class Home extends React.Component {
+export default class Navbar extends React.Component {
   render () {
     return (
       <div>
-        Home Page
+        Navbar
       </div>
     )
   }
