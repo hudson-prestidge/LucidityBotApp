@@ -2,9 +2,9 @@ var config = require('../knexfile').development
 var knex = require('knex')(config)
 var _ = require('underscore')
 
-// getMostUsedWord().then(function(arr){console.log(arr);})
+// getMostUsedWords().then(function(arr){console.log(arr);})
 
-function getMostUsedWord() {
+function getMostUsedWords() {
   return knex.select('text')
     .from('messages')
     .then(function(data){
@@ -56,13 +56,10 @@ function getUserById(id){
         .where('id', id)
 }
 
-
-
 module.exports = {
   getMostActiveUserIds: getMostActiveUserIds,
   getUserById: getUserById,
-  getMostUsedWord: getMostUsedWord,
+  getMostUsedWords: getMostUsedWords,
   getMostAnnoyingUsers: getMostAnnoyingUsers,
   getUserMessageCount: getUserMessageCount
-
 }
