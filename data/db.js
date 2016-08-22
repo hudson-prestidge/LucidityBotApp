@@ -3,33 +3,33 @@ var knex = require('knex')(config)
 
 function getMostUsedWord() {
   return knex.select('text')
-            .from('messages')
-            .then(function(data){
-              // data is in the form of an array with [{text:''},{text:''}]
-              var wordArray = data.map(function(obj){
-               return obj.text
-             }).join(' ').split(' ')
-              var wordFrequency = {}
+    .from('messages')
+    .then(function(data){
+      // data is in the form of an array with [{text:''},{text:''}]
+      var wordArray = data.map(function(obj){
+       return obj.text
+     }).join(' ').split(' ')
+      var wordFrequency = {}
 
-              wordArray.map(function(word) {
-                if(wordFrequency[word]){
-                  wordFrequency[word] += 1
-                } else {
-                  wordFrequency[word] = 1
-                }
-              })
+      wordArray.map(function(word) {
+        if(wordFrequency[word]){
+          wordFrequency[word] += 1
+        } else {
+          wordFrequency[word] = 1
+        }
+      })
 
-              var mostUsedWord = ''
-              var mostWordUses = 0
+      var mostUsedWord = ''
+      var mostWordUses = 0
 
-              Object.keys(wordFrequency).map(function(key){
-                if(wordFrequency[key] > mostWordUses){
-                  mostUsedWord = key
-                  mostWordUses = wordFrequency[key]
-                }
-              })
-              return mostUsedWord
-            })
+      Object.keys(wordFrequency).map(function(key){
+        if(wordFrequency[key] > mostWordUses){
+          mostUsedWord = key
+          mostWordUses = wordFrequency[key]
+        }
+      })
+      return mostUsedWord
+    })
 }
 
 function getMostAnnoyingUsers(){
@@ -43,12 +43,26 @@ function getMostAnnoyingUsers(){
 }
 
 function getMostActiveUserIds() {
-      return knex.select('user_id')
-            .count('*')
-            .from('messages')
-            .groupBy('user_id')
-            .orderBy('count', 'desc')
-            .limit(5)
+  return knex.select('user_id')
+        .count('*')
+        .from('messages')
+        .groupBy('user_id')
+        .orderBy('count', 'desc')
+        .limit(5)
+}
+
+function getUserMessageCount(userId) {
+  return knex.select('user_id')
+        .count('*')
+        .from('messages')
+        .where('user_id', userId)
+        .groupBy('user_id')
+}
+
+function getUserInfo(user){
+  var userInfo = {
+    messageCount: getUserMessageCount(user)
+  }
 }
 
 function getUserById(id){
@@ -62,6 +76,7 @@ module.exports = {
   getMostActiveUserIds: getMostActiveUserIds,
   getUserById: getUserById,
   getMostUsedWord: getMostUsedWord,
-  getMostAnnoyingUsers: getMostAnnoyingUsers
+  getMostAnnoyingUsers: getMostAnnoyingUsers,
+  getUserMessageCount: getUserMessageCount
 
 }

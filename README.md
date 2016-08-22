@@ -13,3 +13,4 @@ Most used words. This is currently working, but only returns one word (and maybe
 Users who bug the streamer the most. Currently returns 5 user _ids_
 
 ideas we can add:
+Not for the api, but adding functionality for the bot to repeat a certain message every given time period would be sweet
