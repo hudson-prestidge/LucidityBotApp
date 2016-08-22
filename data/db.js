@@ -1,5 +1,5 @@
 var config = require('../knexfile').development
-var knex = require('knex')(config)
+// var knex = require('knex')(config)
 var _ = require('underscore')
 
 // getMostUsedWords().then(function(arr){console.log(arr);})
