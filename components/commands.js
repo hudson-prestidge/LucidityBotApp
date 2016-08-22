@@ -5,7 +5,7 @@ export default class Commands extends React.Component {
   render () {
     return (
       <div>
-        Test
+        Commands
       </div>
     )
   }
