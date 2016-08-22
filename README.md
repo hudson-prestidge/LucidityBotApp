@@ -18,3 +18,13 @@ ideas we can add:
 Adding functionality for the bot to repeat a certain message every given time period would be sweet
 Responsiveness/mobile friendliness is a cool feature
 Authentication is mandatory but currently not practical
+
+stats page:
+individual user stats
+channel stats (seperate routes?)
+
+home page:
+welcome message
+
+commands page:
+create table of commands

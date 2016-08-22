@@ -1,7 +1,13 @@
-body {
-  text-align: center;
+html, body {
+  height: 100%;
+  width: 100%;
 }
 
 .container {
+  border: 1px solid black;
+}
+
+.navbutton {
+  height: 100%;
   border: 1px solid black;
 }
