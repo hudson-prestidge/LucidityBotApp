@@ -6,8 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --inline --content-base . --history-api-fallback",
     "dev": "NODE_ENV=development npm-run-all -p dev:*",
-    "build": "browserify index.js -o public/bundle.js -t babelify -dv",
-    "dev:watch": "watchify index.js -o public/bundle.js -t babelify -dv"
+    "build": "browserify client/index.js -o public/bundle.js -t babelify -dv",
+    "dev:watch": "watchify client/index.js -o public/bundle.js -t babelify -dv"
   },
   "repository": {
     "type": "git",

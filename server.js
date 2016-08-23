@@ -1,18 +1,3 @@
-// import express from 'express'
-// import index from 'index.js'
-//
-// const server = express()
-//
-// const PORT = 3000
-//
-// server.listen(PORT, () => {
-//   console.log("Server is listening on port", PORT)
-// })
-//
-// index.render()
-//
-// export default server
-
 var http = require('http')
 var express = require('express')
 var bodyParser = require('body-parser')
