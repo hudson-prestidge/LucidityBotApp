@@ -26,6 +26,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+
 if (require.main === module) {
   server.listen(port, function () {
     console.log('http server listening on port: ', port)

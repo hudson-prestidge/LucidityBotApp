@@ -6,6 +6,10 @@ html, body {
   font-size: 16px;
 }
 
+p{
+  padding-top: 10px;
+}
+
 .container {
   border: 1px solid #4EB1BA;
   border-radius: 5px;
