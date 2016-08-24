@@ -22,7 +22,7 @@ function getMostAnnoyingUsers(){
   return knex.select('user_id')
     .count('*')
     .from('messages')
-    .where('text', 'like', '%day9tv%')
+    .where('text', 'like', '%lara%')
     .groupBy('user_id')
     .orderBy('count', 'desc')
     .limit(5)
