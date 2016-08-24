@@ -18,20 +18,23 @@ export default class Stats extends React.Component {
 
   componentDidMount(){
     var self = this
-    $.ajax({
-      method: 'get',
-      url: '/api/v1/users',
-      success: function(data){
-        self.setState({activeUserData: data})
-      }
-    })
-    $.ajax({
-      method: 'get',
-      url: '/api/v1/users/obnoxious',
-      success: function(data){
-        self.setState({obnoxiousUserData: data})
-      }
-    })
+
+    setInterval(function(){
+      $.ajax({
+        method: 'get',
+        url: '/api/v1/users',
+        success: function(data){
+          self.setState({activeUserData: data})
+        }
+      })
+      $.ajax({
+        method: 'get',
+        url: '/api/v1/users/obnoxious',
+        success: function(data){
+          self.setState({obnoxiousUserData: data})
+        }
+      })
+    }, 3000)
   }
 
 // [{user_id:4, count:10 } ]
@@ -39,7 +42,7 @@ export default class Stats extends React.Component {
   getActiveUserChartData(){
     var newObj = {
       labels: this.state.activeUserData.map(function(r){
-        return r.user_id
+        return r.name
       }),
       datasets:[{
         label: "My First dataset",
@@ -69,7 +72,7 @@ export default class Stats extends React.Component {
   getObnoxiousUserChartData(){
     var newObj = {
       labels: this.state.obnoxiousUserData.map(function(r){
-        return r.user_id
+        return r.name
       }),
       datasets:[{
         label: "My First dataset",

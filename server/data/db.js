@@ -4,6 +4,10 @@ var _ = require('underscore')
 
 // getMostUsedWords().then(function(arr){console.log(arr);})
 
+function getCommands() {
+  return knex('commands')
+}
+
 function getMostUsedWords() {
   return knex.select('text')
     .from('messages')
@@ -19,22 +23,26 @@ function getMostUsedWords() {
 }
 
 function getMostAnnoyingUsers(){
-  return knex.select('user_id')
+  return knex.select('user_id', 'name')
     .count('*')
     .from('messages')
-    .where('text', 'like', '%lara%')
-    .groupBy('user_id')
+    .join('users', 'messages.user_id', 'users.id')
+    .where('text'.toLowerCase(), 'like', '%loserfruit%')
+    .orWhere('text'.toLowerCase(), 'like', '%kath%')
+    .groupBy('user_id', 'name')
     .orderBy('count', 'desc')
     .limit(5)
 }
 
 function getMostActiveUserIds() {
-  return knex.select('user_id')
+  return knex.select('user_id', 'name')
         .count('*')
         .from('messages')
-        .groupBy('user_id')
+        .join('users', 'messages.user_id', 'users.id')
+        .groupBy('user_id', 'name')
         .orderBy('count', 'desc')
         .limit(5)
+
 }
 
 function getUserMessageCount(userId) {
@@ -61,5 +69,6 @@ module.exports = {
   getUserById: getUserById,
   getMostUsedWords: getMostUsedWords,
   getMostAnnoyingUsers: getMostAnnoyingUsers,
-  getUserMessageCount: getUserMessageCount
+  getUserMessageCount: getUserMessageCount,
+  getCommands: getCommands
 }
