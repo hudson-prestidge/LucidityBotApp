@@ -12,4 +12,8 @@ router.get('/', function(req, res) {
     })
 })
 
+router.post('/', function(req, res) {
+  db.addCommand(/*insert thing here*/)
+})
+
 module.exports = router

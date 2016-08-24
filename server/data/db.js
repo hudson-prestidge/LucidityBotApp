@@ -8,6 +8,38 @@ function getCommands() {
   return knex('commands')
 }
 
+function addCommand() {
+  return knex('commands')
+    .insert({
+      name: '',
+      response: ''
+    })
+}
+
+function addTrigger() {
+  return knex('commands')
+    .insert({
+      name: '',
+      response: '',
+      trigger: true
+    })
+}
+
+function deleteCommand(commandId) {
+  return knex('commands')
+    .where('id', commandId)
+    .del()
+}
+
+function updateCommand(commandId) {
+  return knex('commands')
+    .where('id', commandId)
+    .update({
+      name: '',
+      response: ''
+    })
+}
+
 function getMostUsedWords() {
   return knex.select('text')
     .from('messages')
@@ -36,21 +68,20 @@ function getMostAnnoyingUsers(){
 
 function getMostActiveUserIds() {
   return knex.select('user_id', 'name')
-        .count('*')
-        .from('messages')
-        .join('users', 'messages.user_id', 'users.id')
-        .groupBy('user_id', 'name')
-        .orderBy('count', 'desc')
-        .limit(5)
-
+    .count('*')
+    .from('messages')
+    .join('users', 'messages.user_id', 'users.id')
+    .groupBy('user_id', 'name')
+    .orderBy('count', 'desc')
+    .limit(5)
 }
 
 function getUserMessageCount(userId) {
   return knex.select('user_id')
-        .count('*')
-        .from('messages')
-        .where('user_id', userId)
-        .groupBy('user_id')
+    .count('*')
+    .from('messages')
+    .where('user_id', userId)
+    .groupBy('user_id')
 }
 
 function getUserInfo(user){
@@ -61,7 +92,7 @@ function getUserInfo(user){
 
 function getUserById(id){
   return knex('users')
-        .where('id', id)
+    .where('id', id)
 }
 
 module.exports = {
