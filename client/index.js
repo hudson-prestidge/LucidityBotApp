@@ -6,6 +6,7 @@ import Commands from './components/commands'
 import Stats from './components/stats'
 import Home from './components/home'
 import CommandForm from './components/commandform'
+import EditCommandForm from './components/editcommandform'
 
   render(
     <Router history={browserHistory}>
@@ -14,6 +15,7 @@ import CommandForm from './components/commandform'
         <Route path="/home" component={Home}/>
         <Route path="/commands" component={Commands}/>
         <Route path="/commands/new" component={CommandForm}/>
+        <Route path="/commands/:id" component={EditCommandForm}/>
         <Route path="/stats" component={Stats}/>
       </Route>
     </Router>

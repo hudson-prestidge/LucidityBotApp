@@ -20,4 +20,11 @@ router.post('/', function(req, res) {
     })
 })
 
+router.put('/', function(req, res) {
+  db.editCommand(req.body.name, req.body.response)
+    .then(function(data){
+      console.log(data);
+    })
+})
+
 module.exports = router
