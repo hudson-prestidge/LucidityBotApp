@@ -1,5 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
+import { Link } from 'react-router'
 
 
 export default class Commands extends React.Component {
@@ -27,15 +28,22 @@ export default class Commands extends React.Component {
 
   render () {
     return (
-      <div className="container command-container">
-        <h1> List of bot Commands </h1>
-        <table>
-        <tr>
-          <th> Command </th>
-          <th> Response </th>
-        </tr>
-        {this.state.commands ? this.state.commands.map((command, i) => <tr key={i}> <td className='command'>{command.name}</td><td>{command.response}</td></tr>) : null}
-        </table>
+      <div>
+        <div className="container command-container">
+          <h1> List of bot Commands </h1>
+          <table>
+            <thead>
+              <tr>
+                <th> Command </th>
+                <th> Response </th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.commands ? this.state.commands.map((command, i) => <tr key={i}> <td className='command'>{command.name}</td><td>{command.response}</td></tr>) : null}
+              </tbody>
+          </table>
+        </div>
+        <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/new' > Add New Command </Link>
       </div>
     )
   }

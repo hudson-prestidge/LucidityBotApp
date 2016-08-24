@@ -8,11 +8,12 @@ function getCommands() {
   return knex('commands')
 }
 
-function addCommand() {
+function addCommand(name, response) {
   return knex('commands')
     .insert({
-      name: '',
-      response: ''
+      name: name,
+      response: response,
+      trigger: false
     })
 }
 
@@ -101,5 +102,9 @@ module.exports = {
   getMostUsedWords: getMostUsedWords,
   getMostAnnoyingUsers: getMostAnnoyingUsers,
   getUserMessageCount: getUserMessageCount,
-  getCommands: getCommands
+  getCommands: getCommands,
+  addCommand: addCommand,
+  addTrigger: addTrigger,
+  deleteCommand: deleteCommand,
+  updateCommand: updateCommand
 }

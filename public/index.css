@@ -20,6 +20,9 @@ td {
   text-align: left;
 }
 
+form {
+}
+
 table {
   border-spacing: 10px;
   border: 1px solid #4EB1BA;
@@ -29,6 +32,13 @@ p{
   padding-top: 10px;
 }
 
+input, textarea {
+  display: inline-block;
+  width: 100%;
+  color: black;
+  margin-top: 10px;
+}
+
 .container {
   border: 1px solid #4EB1BA;
   border-radius: 5px;
@@ -36,7 +46,7 @@ p{
   padding: 30px;
 }
 
-.command-container, .command, th, .legend{
+.command-container, .command, th, .legend, form{
   text-align: center;
 }
 
@@ -58,7 +68,6 @@ p{
   text-align: center;
   min-height: 50px;
   line-height: 50px;
-  border-right: 1px solid #4EB1BA;
 }
 
 .smalltext {
