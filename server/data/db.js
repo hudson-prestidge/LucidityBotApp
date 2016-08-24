@@ -32,12 +32,12 @@ function deleteCommand(commandId) {
     .del()
 }
 
-function updateCommand(commandId) {
+function updateCommand(commandId, name, response) {
   return knex('commands')
     .where('id', commandId)
     .update({
-      name: '',
-      response: ''
+      name: name,
+      response: response
     })
 }
 

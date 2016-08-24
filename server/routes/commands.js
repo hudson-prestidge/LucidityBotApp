@@ -15,15 +15,13 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
   db.addCommand(req.body.name, req.body.response)
     .then(function(data){
-      console.log(data);
 
     })
 })
 
-router.put('/', function(req, res) {
-  db.editCommand(req.body.name, req.body.response)
+router.post('/:id', function(req, res) {
+  db.updateCommand(req.params.id, req.body.name, req.body.response)
     .then(function(data){
-      console.log(data);
     })
 })
 
