@@ -25,4 +25,10 @@ router.post('/:id', function(req, res) {
     })
 })
 
+router.delete('/:id', function(req, res) {
+  db.deleteCommand(req.params.id)
+    .then(function(data){
+    })
+})
+
 module.exports = router

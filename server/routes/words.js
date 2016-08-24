@@ -3,9 +3,9 @@ var db = require('../data/db')
 var router = express.Router();
 
 router.get('/', function(req, res) {
-  db.getMostUsedWord()
+  db.getMostUsedWords()
     .then(function(words){
-      res.send("the most used word is " + words)
+      res.send(words)
     })
 })
 

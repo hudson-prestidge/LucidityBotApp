@@ -39,6 +39,12 @@ input, textarea {
   margin-top: 10px;
 }
 
+button {
+  background-color: #221430;
+  opacity: 0.5;
+  color: #E9E9E9;
+}
+
 .container {
   border: 1px solid #4EB1BA;
   border-radius: 5px;
@@ -74,17 +80,21 @@ input, textarea {
   font-size: 0.7em;
 }
 
-#mostActiveUserChart {
+.chart {
   display: inline-block;
   margin-bottom: 50px;
   margin-left: 60px;
 }
 
+#mostActiveUserChart {
+
+}
+
 #mostObnoxiousUserChart {
-  display: inline-block;
-  float: right;
-  margin-bottom: 50px;
-  margin-right: 60px;
+}
+
+#mostUsedWordChart {
+  margin-left: 260px;
 }
 
 /*#222930

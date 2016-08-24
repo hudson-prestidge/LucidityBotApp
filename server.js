@@ -5,6 +5,7 @@ var path = require('path')
 var port = process.env.PORT || 3000
 var users = require('./server/routes/users')
 var commands = require('./server/routes/commands')
+var words = require('./server/routes/words')
 
 var app = express()
 var server = http.createServer(app)
@@ -15,6 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api/v1/users/', users)
 app.use('/api/v1/commands/', commands)
+app.use('/api/v1/words/', words)
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))

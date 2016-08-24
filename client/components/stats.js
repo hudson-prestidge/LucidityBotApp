@@ -34,6 +34,13 @@ export default class Stats extends React.Component {
           self.setState({obnoxiousUserData: data})
         }
       })
+      $.ajax({
+        method: 'get',
+        url: '/api/v1/words',
+        success: function(data){
+          self.setState({wordUsageData: data})
+        }
+      })
     }, 3000)
   }
 
@@ -99,16 +106,50 @@ export default class Stats extends React.Component {
     return newObj
   }
 
+  getWordUsageChartData(){
+    var newObj = {
+      labels: this.state.wordUsageData.map(function(r){
+        return r[0]
+      }),
+      datasets:[{
+        label: "My First dataset",
+        fillColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)'
+        ],
+        strokeColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)'
+        ],
+        borderWidth: 1,
+        data: this.state.wordUsageData.map(function(r){
+          return r[1]
+        })
+      }]
+    }
+    return newObj
+  }
+
   render () {
     return (
       <div className="container">
-        <div id='mostActiveUserChart'>
+        <div id='mostActiveUserChart' className='chart'>
           {this.state.activeUserData ? <BarChart data={this.getActiveUserChartData()} width={400} height={400} /> : null}
           <div className='legend'>Most Active Users</div>
         </div>
-        <div id='mostObnoxiousUserChart'>
+        <div id='mostObnoxiousUserChart' className='chart'>
           {this.state.obnoxiousUserData ? <BarChart data={this.getObnoxiousUserChartData()} width={400} height={400} /> : null}
           <div className='legend'>Most <abbr title="most messages that directly reference the streamer">Obnoxious</abbr> Users</div>
+        </div>
+        <div id='mostUsedWordChart' className='chart'>
+          {this.state.wordUsageData ? <BarChart data={this.getWordUsageChartData()} width={400} height={400} /> : null}
+          <div className='legend'>Most Used Words</div>
         </div>
       </div>
     )

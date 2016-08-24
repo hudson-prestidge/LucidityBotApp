@@ -1,6 +1,7 @@
 import React from 'react'
 import $ from 'jquery'
 import { Link } from 'react-router'
+import Command from './command'
 
 
 export default class Commands extends React.Component {
@@ -10,6 +11,18 @@ export default class Commands extends React.Component {
     this.state = {
 
     }
+  }
+
+  clickHandler() {
+    var self = this
+    console.log(this.props.command);
+    $.ajax({
+      method: 'delete',
+      url: '/api/v1/commands/',
+      success: function(data){
+
+      }
+    })
   }
 
   componentDidMount(){
@@ -22,6 +35,7 @@ export default class Commands extends React.Component {
           return{
           name: d.name,
           response: d.response,
+          id: d.id,
           linkString: '/commands/' + d.id
           }
         })
@@ -30,11 +44,13 @@ export default class Commands extends React.Component {
     })
   }
 
+
+
   render () {
     return (
       <div>
         <div className="container command-container">
-          <h1> List of bot Commands </h1>
+          <h1> List of Bot Commands </h1>
           <table>
             <thead>
               <tr>
@@ -43,7 +59,7 @@ export default class Commands extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.commands ? this.state.commands.map((command, i) => <tr key={i}> <td className='command'>{command.name}</td><td>{command.response}</td><td><Link to={command.linkString}> Edit Command </Link> </td></tr>) : null}
+              {this.state.commands ? this.state.commands.map((command, i) => <tr key={i}> <td className='command'>{command.name}</td><td>{command.response}</td><td><Link to={command.linkString}> Edit Command </Link></td><td><button onClick={this.clickHandler}>delete</button></td></tr>) : null}
             </tbody>
           </table>
         </div>
@@ -52,3 +68,5 @@ export default class Commands extends React.Component {
     )
   }
 }
+
+//{this.state.commands ? this.state.commands.map((command, i) => {<Command body={command} key={i} />}) : null}
