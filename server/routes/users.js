@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 })
 
 router.get('/obnoxious', function(req, res) {
-  db.getMostAnnoyingUsers()
+  db.getMostObnoxiousUsers()
     .then(function(usersInfo) {
         res.send(usersInfo)
     })

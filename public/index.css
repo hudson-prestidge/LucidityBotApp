@@ -4,16 +4,17 @@ html, body {
   background-color: #222930;
   color: #E9E9E9;
   font-size: 16px;
+  font-family: 'Lato', sans-serif;
 }
 
 tr {
-  border: 1px solid #4EB1BA;
+  border: 1px solid #cc5200;
 }
 
 th, td {
   padding-right: 20px;
   padding-left: 20px;
-  border-right: 1px solid #4EB1BA;
+  border-right: 1px solid #cc5200;
 }
 
 td {
@@ -25,7 +26,7 @@ form {
 
 table {
   border-spacing: 10px;
-  border: 1px solid #4EB1BA;
+  border: 1px solid #cc5200;
 }
 
 p{
@@ -39,14 +40,8 @@ input, textarea {
   margin-top: 10px;
 }
 
-button {
-  background-color: #221430;
-  opacity: 0.5;
-  color: #E9E9E9;
-}
-
 .container {
-  border: 1px solid #4EB1BA;
+  border: 1px solid #cc5200;
   border-radius: 5px;
   background-color: #221430;
   padding: 30px;
@@ -57,7 +52,7 @@ button {
 }
 
 .navbar {
-  border: 1px solid #4EB1BA;
+  border: 1px solid #cc5200;
   background-color: #221430;
 }
 
@@ -66,7 +61,7 @@ button {
   font-size: 30px;
   min-height: 50px;
   line-height: 50px;
-  border-right: 1px solid #4EB1BA;
+  border-right: 1px solid #cc5200;
 }
 
 .navbutton {
@@ -98,5 +93,5 @@ button {
 }
 
 /*#222930
-#4EB1BA
+#cc5200
 #E9E9E9*/

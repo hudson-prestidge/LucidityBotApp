@@ -18,30 +18,35 @@ export default class Stats extends React.Component {
 
   componentDidMount(){
     var self = this
-
+    self.getChartInfo()
     setInterval(function(){
-      $.ajax({
-        method: 'get',
-        url: '/api/v1/users',
-        success: function(data){
-          self.setState({activeUserData: data})
-        }
-      })
-      $.ajax({
-        method: 'get',
-        url: '/api/v1/users/obnoxious',
-        success: function(data){
-          self.setState({obnoxiousUserData: data})
-        }
-      })
-      $.ajax({
-        method: 'get',
-        url: '/api/v1/words',
-        success: function(data){
-          self.setState({wordUsageData: data})
-        }
-      })
+      self.getChartInfo()
     }, 3000)
+  }
+
+  getChartInfo() {
+    var self = this
+    $.ajax({
+      method: 'get',
+      url: '/api/v1/users',
+      success: function(data){
+        self.setState({activeUserData: data})
+      }
+    })
+    $.ajax({
+      method: 'get',
+      url: '/api/v1/users/obnoxious',
+      success: function(data){
+        self.setState({obnoxiousUserData: data})
+      }
+    })
+    $.ajax({
+      method: 'get',
+      url: '/api/v1/words',
+      success: function(data){
+        self.setState({wordUsageData: data})
+      }
+    })
   }
 
 // [{user_id:4, count:10 } ]
@@ -145,7 +150,7 @@ export default class Stats extends React.Component {
         </div>
         <div id='mostObnoxiousUserChart' className='chart'>
           {this.state.obnoxiousUserData ? <BarChart data={this.getObnoxiousUserChartData()} width={400} height={400} /> : null}
-          <div className='legend'>Most <abbr title="most messages that directly reference the streamer">Obnoxious</abbr> Users</div>
+          <div className='legend'>Most <abbr title="Sent the most messages that directly reference the streamer">Obnoxious</abbr> Users</div>
         </div>
         <div id='mostUsedWordChart' className='chart'>
           {this.state.wordUsageData ? <BarChart data={this.getWordUsageChartData()} width={400} height={400} /> : null}

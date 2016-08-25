@@ -59,7 +59,7 @@ export default class Commands extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.commands ? this.state.commands.map((command, i) => <tr key={i}> <td className='command'>{command.name}</td><td>{command.response}</td><td><Link to={command.linkString}> Edit Command </Link></td><td><button onClick={this.clickHandler}>delete</button></td></tr>) : null}
+              {this.state.commands ? this.state.commands.map((command, i) => <tr key={i}> <td className='command'>{command.name}</td><td>{command.response}</td><td><Link to={command.linkString}> Edit Command </Link></td><td><a onClick={this.clickHandler}>Delete Command</a></td></tr>) : null}
             </tbody>
           </table>
         </div>

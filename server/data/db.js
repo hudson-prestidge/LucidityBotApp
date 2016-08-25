@@ -55,13 +55,12 @@ function getMostUsedWords() {
     })
 }
 
-function getMostAnnoyingUsers(){
+function getMostObnoxiousUsers(){
   return knex.select('user_id', 'name')
     .count('*')
     .from('messages')
     .join('users', 'messages.user_id', 'users.id')
-    .where('text'.toLowerCase(), 'like', '%loserfruit%')
-    .orWhere('text'.toLowerCase(), 'like', '%kath%')
+    .where('text'.toLowerCase(), 'like', '%strifecro%')
     .groupBy('user_id', 'name')
     .orderBy('count', 'desc')
     .limit(5)
@@ -100,7 +99,7 @@ module.exports = {
   getMostActiveUserIds: getMostActiveUserIds,
   getUserById: getUserById,
   getMostUsedWords: getMostUsedWords,
-  getMostAnnoyingUsers: getMostAnnoyingUsers,
+  getMostObnoxiousUsers: getMostObnoxiousUsers,
   getUserMessageCount: getUserMessageCount,
   getCommands: getCommands,
   addCommand: addCommand,
