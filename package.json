@@ -1,0 +1,47 @@
+{
+  "name": "LucidityBotApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --inline --content-base . --history-api-fallback",
+    "dev": "NODE_ENV=development npm-run-all -p dev:*",
+    "build": "browserify client/index.js -o public/bundle.js -t babelify -dv",
+    "dev:watch": "watchify client/index.js -o public/bundle.js -t babelify -dv"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hudson-prestidge/LucidityBotApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hudson-prestidge/LucidityBotApp/issues"
+  },
+  "homepage": "https://github.com/hudson-prestidge/LucidityBotApp#readme",
+  "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "express": "^4.14.0",
+    "http-server": "^0.9.0",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "chart.js": "^1.1.1",
+    "jquery": "^3.1.0",
+    "knex": "^0.11.10",
+    "path": "^0.12.7",
+    "pg": "^6.1.0",
+    "react": "^15.3.1",
+    "react-chartjs": "^0.8.0",
+    "react-dom": "^15.3.1",
+    "react-router": "^2.7.0",
+    "underscore": "^1.8.3"
+  }
+}

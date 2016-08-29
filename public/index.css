@@ -1,0 +1,97 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #222930;
+  color: #E9E9E9;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+}
+
+tr {
+  border: 1px solid #cc5200;
+}
+
+th, td {
+  padding-right: 20px;
+  padding-left: 20px;
+  border-right: 1px solid #cc5200;
+}
+
+td {
+  text-align: left;
+}
+
+form {
+}
+
+table {
+  border-spacing: 10px;
+  border: 1px solid #cc5200;
+}
+
+p{
+  padding-top: 10px;
+}
+
+input, textarea {
+  display: inline-block;
+  width: 100%;
+  color: black;
+  margin-top: 10px;
+}
+
+.container {
+  border: 1px solid #cc5200;
+  border-radius: 5px;
+  background-color: #221430;
+  padding: 30px;
+}
+
+.command-container, .command, th, .legend, form{
+  text-align: center;
+}
+
+.navbar {
+  border: 1px solid #cc5200;
+  background-color: #221430;
+}
+
+.logo {
+  text-align: center;
+  font-size: 30px;
+  min-height: 50px;
+  line-height: 50px;
+  border-right: 1px solid #cc5200;
+}
+
+.navbutton {
+  color: #E9E9E9;
+  text-align: center;
+  min-height: 50px;
+  line-height: 50px;
+}
+
+.smalltext {
+  font-size: 0.7em;
+}
+
+.chart {
+  display: inline-block;
+  margin-bottom: 50px;
+  margin-left: 60px;
+}
+
+#mostActiveUserChart {
+
+}
+
+#mostObnoxiousUserChart {
+}
+
+#mostUsedWordChart {
+  margin-left: 260px;
+}
+
+/*#222930
+#cc5200
+#E9E9E9*/
