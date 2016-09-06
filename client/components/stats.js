@@ -1,10 +1,10 @@
 import React from 'react'
 import $ from 'jquery'
-import rcjs from "react-chartjs"
+import rcjs from 'react-chartjs'
+import { Link } from 'react-router'
+import MostActiveUsers from './MostActiveUsers'
 
 var BarChart = rcjs.Bar
-
-// var stupidData = [['lol', 40000]['Kappa', 12000]['xD', 7312]['meme', 5463]['memes', 4719]['butts', 1200]['some', 953]['sensible', 643]['discussion', 1]]
 
 export default class Stats extends React.Component {
 
@@ -13,8 +13,6 @@ export default class Stats extends React.Component {
     this.state = {
     }
   }
-
-
 
   componentDidMount(){
     var self = this
@@ -26,13 +24,6 @@ export default class Stats extends React.Component {
 
   getChartInfo() {
     var self = this
-    $.ajax({
-      method: 'get',
-      url: '/api/v1/users',
-      success: function(data){
-        self.setState({activeUserData: data})
-      }
-    })
     $.ajax({
       method: 'get',
       url: '/api/v1/users/obnoxious',
@@ -47,38 +38,6 @@ export default class Stats extends React.Component {
         self.setState({wordUsageData: data})
       }
     })
-  }
-
-// [{user_id:4, count:10 } ]
-
-  getActiveUserChartData(){
-    var newObj = {
-      labels: this.state.activeUserData.map(function(r){
-        return r.name
-      }),
-      datasets:[{
-        label: "My First dataset",
-        fillColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)'
-        ],
-        strokeColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)'
-        ],
-        borderWidth: 1,
-        data: this.state.activeUserData.map(function(r){
-          return r.count
-        })
-      }]
-    }
-    return newObj
   }
 
   getObnoxiousUserChartData(){
@@ -141,13 +100,15 @@ export default class Stats extends React.Component {
     return newObj
   }
 
+
+    // <Link className='col-md-2' to='/stats/active_users' > Most Active Users </Link>
+    // <Link className='col-md-2' to='/stats/obnoxious_users' > Most Obnoxious Users </Link>
+    // <Link className='col-md-2' to='/stats/word_usage'>Most Used Words </Link>
+
   render () {
     return (
       <div className="container">
-        <div id='mostActiveUserChart' className='chart'>
-          {this.state.activeUserData ? <BarChart data={this.getActiveUserChartData()} width={400} height={400} /> : null}
-          <div className='legend'>Most Active Users</div>
-        </div>
+        <MostActiveUsers />
         <div id='mostObnoxiousUserChart' className='chart'>
           {this.state.obnoxiousUserData ? <BarChart data={this.getObnoxiousUserChartData()} width={400} height={400} /> : null}
           <div className='legend'>Most <abbr title="Sent the most messages that directly reference the streamer">Obnoxious</abbr> Users</div>

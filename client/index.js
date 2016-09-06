@@ -21,3 +21,9 @@ import EditCommandForm from './components/editcommandform'
     </Router>
     , document.getElementById('app')
   )
+
+
+//   <Route path="/stats/active_users" component={Stats}/>
+//   <Route path="/stats/obnoxious_users" component={Stats}/>
+//   <Route path="/stats/word_usage" component={Stats}/>
+// </Route>
