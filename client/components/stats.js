@@ -2,6 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import rcjs from 'react-chartjs'
 import { Link } from 'react-router'
+import StatsNavbar from './stats/statsNavbar'
 
 var BarChart = rcjs.Bar
 
@@ -16,10 +17,7 @@ export default class Stats extends React.Component {
   render () {
     return (
       <div className="container">
-        <Link className='col-md-2' to='/stats/activeusers' > Most Active Users </Link>
-        <Link className='col-md-2' to='/stats/obnoxioususers' > Most Obnoxious Users </Link>
-        <Link className='col-md-2' to='/stats/mostusedwords'>Most Used Words </Link>
-
+        <StatsNavbar />
         {this.props.children}
 
       </div>
