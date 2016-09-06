@@ -7,7 +7,7 @@ import Stats from './components/stats'
 import Home from './components/home'
 import CommandForm from './components/commandform'
 import EditCommandForm from './components/editcommandform'
-import MostActiveUsersGraph from './components/mostActiveUsersGraph'
+import MostActiveUsersGraph from './components/stats/mostActiveUsersGraph'
 
   render(
     <Router history={browserHistory}>

@@ -2,7 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import rcjs from 'react-chartjs'
 import { Link } from 'react-router'
-import MostActiveUsersGraph from './MostActiveUsersGraph'
+import MostActiveUsersGraph from './stats/MostActiveUsersGraph'
 
 var BarChart = rcjs.Bar
 
