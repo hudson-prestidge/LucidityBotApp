@@ -7,6 +7,7 @@ import Stats from './components/stats'
 import Home from './components/home'
 import CommandForm from './components/commandform'
 import EditCommandForm from './components/editcommandform'
+import MostActiveUsersGraph from './components/mostActiveUsersGraph'
 
   render(
     <Router history={browserHistory}>
@@ -16,14 +17,11 @@ import EditCommandForm from './components/editcommandform'
         <Route path="/commands" component={Commands}/>
         <Route path="/commands/new" component={CommandForm}/>
         <Route path="/commands/:id" component={EditCommandForm}/>
-        <Route path="/stats" component={Stats}/>
+        <Route path="/stats">
+          <IndexRoute component={Stats}/>
+          <Route path="/stats/activeusers" component={MostActiveUsersGraph}/>
+        </Route>
       </Route>
     </Router>
     , document.getElementById('app')
   )
-
-
-//   <Route path="/stats/active_users" component={Stats}/>
-//   <Route path="/stats/obnoxious_users" component={Stats}/>
-//   <Route path="/stats/word_usage" component={Stats}/>
-// </Route>

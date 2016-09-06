@@ -2,7 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import rcjs from 'react-chartjs'
 import { Link } from 'react-router'
-import MostActiveUsers from './MostActiveUsers'
+import MostActiveUsersGraph from './MostActiveUsersGraph'
 
 var BarChart = rcjs.Bar
 
@@ -101,14 +101,13 @@ export default class Stats extends React.Component {
   }
 
 
-    // <Link className='col-md-2' to='/stats/active_users' > Most Active Users </Link>
-    // <Link className='col-md-2' to='/stats/obnoxious_users' > Most Obnoxious Users </Link>
-    // <Link className='col-md-2' to='/stats/word_usage'>Most Used Words </Link>
 
   render () {
     return (
       <div className="container">
-        <MostActiveUsers />
+        <Link className='col-md-2' to='/stats/activeusers' > Most Active Users </Link>
+        <Link className='col-md-2' to='/stats/obnoxious_users' > Most Obnoxious Users </Link>
+        <Link className='col-md-2' to='/stats/word_usage'>Most Used Words </Link>
         <div id='mostObnoxiousUserChart' className='chart'>
           {this.state.obnoxiousUserData ? <BarChart data={this.getObnoxiousUserChartData()} width={400} height={400} /> : null}
           <div className='legend'>Most <abbr title="Sent the most messages that directly reference the streamer">Obnoxious</abbr> Users</div>
@@ -117,6 +116,9 @@ export default class Stats extends React.Component {
           {this.state.wordUsageData ? <BarChart data={this.getWordUsageChartData()} width={400} height={400} /> : null}
           <div className='legend'>Most Used Words</div>
         </div>
+
+        {this.props.children}
+
       </div>
     )
   }
