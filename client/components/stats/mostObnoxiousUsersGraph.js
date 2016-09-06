@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 var BarChart = rcjs.Bar
 
-export default class MostActiveUsers extends React.Component {
+export default class MostObnoxiousUsers extends React.Component {
 
   constructor(props) {
     super(props)
