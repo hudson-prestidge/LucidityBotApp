@@ -2,11 +2,10 @@ import React from 'react'
 import $ from 'jquery'
 import rcjs from 'react-chartjs'
 import { Link } from 'react-router'
-import MostActiveUsersGraph from './stats/MostActiveUsersGraph'
 
 var BarChart = rcjs.Bar
 
-export default class Stats extends React.Component {
+export default class MostActiveUsers extends React.Component {
 
   constructor(props) {
     super(props)
@@ -22,21 +21,21 @@ export default class Stats extends React.Component {
     }, 3000)
   }
 
-  getChartInfo() {
+  getChartInfo(){
     var self = this
     $.ajax({
       method: 'get',
-      url: '/api/v1/words',
+      url: '/api/v1/users/obnoxious',
       success: function(data){
-        self.setState({wordUsageData: data})
+        self.setState({obnoxiousUserData: data})
       }
     })
   }
 
-  getWordUsageChartData(){
+  getObnoxiousUserChartData(){
     var newObj = {
-      labels: this.state.wordUsageData.map(function(r){
-        return r[0]
+      labels: this.state.obnoxiousUserData.map(function(r){
+        return r.name
       }),
       datasets:[{
         label: "My First dataset",
@@ -55,29 +54,19 @@ export default class Stats extends React.Component {
             'rgba(153, 102, 255, 1)'
         ],
         borderWidth: 1,
-        data: this.state.wordUsageData.map(function(r){
-          return r[1]
+        data: this.state.obnoxiousUserData.map(function(r){
+          return r.count
         })
       }]
     }
     return newObj
   }
 
-
-
   render () {
     return (
-      <div className="container">
-        <Link className='col-md-2' to='/stats/activeusers' > Most Active Users </Link>
-        <Link className='col-md-2' to='/stats/obnoxioususers' > Most Obnoxious Users </Link>
-        <Link className='col-md-2' to='/stats/word_usage'>Most Used Words </Link>
-        <div id='mostUsedWordChart' className='chart'>
-          {this.state.wordUsageData ? <BarChart data={this.getWordUsageChartData()} width={400} height={400} /> : null}
-          <div className='legend'>Most Used Words</div>
-        </div>
-
-        {this.props.children}
-
+      <div id='mostObnoxiousUserChart' className='chart'>
+        {this.state.obnoxiousUserData ? <BarChart data={this.getObnoxiousUserChartData()} width={400} height={400} /> : null}
+        <div className='legend'>Most Obnoxious Users</div>
       </div>
     )
   }

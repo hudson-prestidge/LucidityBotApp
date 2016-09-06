@@ -8,6 +8,7 @@ import Home from './components/home'
 import CommandForm from './components/commandform'
 import EditCommandForm from './components/editcommandform'
 import MostActiveUsersGraph from './components/stats/mostActiveUsersGraph'
+import MostObnoxiousUsersGraph from './components/stats/mostObnoxiousUsersGraph'
 
   render(
     <Router history={browserHistory}>
@@ -20,6 +21,7 @@ import MostActiveUsersGraph from './components/stats/mostActiveUsersGraph'
         <Route path="/stats">
           <IndexRoute component={Stats}/>
           <Route path="/stats/activeusers" component={MostActiveUsersGraph}/>
+          <Route path="/stats/obnoxioususers" component={MostObnoxiousUsersGraph}/>
         </Route>
       </Route>
     </Router>
