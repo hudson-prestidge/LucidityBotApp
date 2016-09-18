@@ -19,8 +19,7 @@ import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
         <Route path="/commands" component={Commands}/>
         <Route path="/commands/new" component={CommandForm}/>
         <Route path="/commands/:id" component={EditCommandForm}/>
-        <Route path="/stats">
-          <IndexRoute component={Stats}/>
+        <Route path="/stats" component = {Stats}>
           <Route path="/stats/activeusers" component={MostActiveUsersGraph}/>
           <Route path="/stats/obnoxioususers" component={MostObnoxiousUsersGraph}/>
           <Route path="/stats/mostusedwords" component={MostUsedWordsGraph}/>
