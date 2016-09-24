@@ -18,6 +18,10 @@ app.use('/api/v1/users/', users)
 app.use('/api/v1/commands/', commands)
 app.use('/api/v1/words/', words)
 
+app.get('/login', function(req, res) {
+  res.render('login', { messages: req.flash() })
+})
+
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
