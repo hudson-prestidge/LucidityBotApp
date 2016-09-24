@@ -12,40 +12,40 @@ var bcrypt = require('bcrypt-nodejs')
 
 var app = express()
 
-passport.serializeUser(function(user, callback) {
-  callback(null, user.id)
-})
-
-passport.deserializeUser(function(id, callback) {
-  knex('users').where('id', id).first().then(function(user) {
-    callback(null, user)
-  })
-})
-
-var isAuthenticated = function(req, res, next) {
-  if (req.isAuthenticated())
-    return next()
-
-  req.flash('error', 'You must be logged in to access that page.')
-  res.redirect('/login')
-}
-
-
-passport.use('login', new LocalStrategy(
-  function(name, password, done) {
-    knex('users').where('name', name).first().then(function(user){
-      if(user) {
-        if(bcrypt.compareSync(password, user.password)) {
-          return done(null, user)
-        } else {
-          return done(null, false, { message: 'Invalid password.' })
-        }
-      } else {
-        return done(null, false, { message: 'Incorrect details.' })
-      }
-    })
-  }
-))
+// passport.serializeUser(function(user, callback) {
+//   callback(null, user.id)
+// })
+//
+// passport.deserializeUser(function(id, callback) {
+//   knex('users').where('id', id).first().then(function(user) {
+//     callback(null, user)
+//   })
+// })
+//
+// var isAuthenticated = function(req, res, next) {
+//   if (req.isAuthenticated())
+//     return next()
+//
+//   req.flash('error', 'You must be logged in to access that page.')
+//   res.redirect('/login')
+// }
+//
+//
+// passport.use('login', new LocalStrategy(
+//   function(name, password, done) {
+//     knex('users').where('name', name).first().then(function(user){
+//       if(user) {
+//         if(bcrypt.compareSync(password, user.password)) {
+//           return done(null, user)
+//         } else {
+//           return done(null, false, { message: 'Invalid password.' })
+//         }
+//       } else {
+//         return done(null, false, { message: 'Incorrect details.' })
+//       }
+//     })
+//   }
+// ))
 
 // passport.use('signup', new LocalStrategy(
 //   function(name, password, done) {
@@ -78,18 +78,22 @@ app.use(session({ cookie: { maxAge: 60000 }, secret: 'bodyparseristheworstthing'
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
-
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api/v1/users/', users)
 app.use('/api/v1/commands/', commands)
 app.use('/api/v1/words/', words)
 
 app.get('/login', function(req, res) {
-  res.render('login', { messages: req.flash() })
+  res.render('login')
 })
+
+app.post('/login',
+  passport.authenticate('login', { failureRedirect: '/login', failureFlash: true } ),
+  function(req, res) {
+    res.redirect('/')
+  }
+)
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))

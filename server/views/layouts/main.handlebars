@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hudson</title>
+</head>
+<body>
+  <ul>
+    <li><a href="/">home</a></li>
+    <li><a href="/secret">secret</a></li>
+    {{#if user}}
+      <li><a href="/logout">logout ({{user.username}})</a></li>
+    {{else}}
+      <li><a href="/login">login</a></li>
+      <li><a href="/signup">signup</a></li>
+    {{/if}}
+  </ul>
+
+    {{{body}}}
+</body>
+</html>
