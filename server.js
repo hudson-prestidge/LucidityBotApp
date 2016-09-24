@@ -27,8 +27,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main', layoutsDir:'server/views
 app.set('views', path.join(__dirname, './server/views'))
 app.set('view engine', 'handlebars');
 
-app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static('public'))
 
 app.use('/api/v1/users/', users)
 app.use('/api/v1/commands/', commands)
@@ -66,7 +65,8 @@ passport.use('login', new LocalStrategy(
   function(name, password, done) {
     knex('users').where('name', name).first().then(function(user){
       if(user) {
-        if(bcrypt.compareSync(password, user.password)) {
+        // if(bcrypt.compareSync(password, user.password)) {
+        if(password === user.password) {
           return done(null, user)
         } else {
           return done(null, false, { message: 'Invalid password.' })
