@@ -3,8 +3,14 @@ var knex = require('knex')(config)
 var _ = require('underscore')
 var commonWords = require('./commonwords')
 
-function getCommands() {
+function getRegularCommands() {
   return knex('commands')
+        .where('trigger', false)
+}
+
+function getTriggerPhrases() {
+  return knex('commands')
+        .where('trigger', true)
 }
 
 function addCommand(name, response) {
@@ -116,7 +122,8 @@ module.exports = {
   getMostUsedWords: getMostUsedWords,
   getMostObnoxiousUsers: getMostObnoxiousUsers,
   getUserMessageCount: getUserMessageCount,
-  getCommands: getCommands,
+  getRegularCommands: getRegularCommands,
+  getTriggerPhrases: getTriggerPhrases,
   addCommand: addCommand,
   addTrigger: addTrigger,
   deleteCommand: deleteCommand,

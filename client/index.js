@@ -16,7 +16,11 @@ import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>
         <Route path="/home" component={Home}/>
-        <Route path="/commands" component={Commands}/>
+        <Route path="/commands" component={Commands}>
+          <Route path="/regularCommands" component={MostActiveUsersGraph}/>
+          <Route path="/triggerPhrases" component={MostObnoxiousUsersGraph}/>
+          <Route path="/scheduledCommands" component={MostUsedWordsGraph}/>
+        </Route>
         <Route path="/commands/new" component={CommandForm}/>
         <Route path="/commands/:id" component={EditCommandForm}/>
         <Route path="/stats" component = {Stats}>

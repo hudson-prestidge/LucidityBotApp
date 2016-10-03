@@ -53,7 +53,7 @@ passport.deserializeUser(function(id, callback) {
   })
 })
 
-var isAuthenticated = function(req, res, next) {
+const isAuthenticated = function(req, res, next) {
   if (req.isAuthenticated()) return next()
 
   req.flash('error', 'You must be logged in to access that page.')

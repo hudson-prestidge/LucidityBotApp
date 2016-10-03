@@ -2,7 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import { Link } from 'react-router'
 import Command from './command'
-
+import CommandNavbar from './CommandNavbar'
 
 export default class Commands extends React.Component {
 
@@ -50,6 +50,7 @@ export default class Commands extends React.Component {
     return (
       <div>
         <div className="container command-container">
+          <CommandNavbar />
           <h1> List of Bot Commands </h1>
           <table>
             <thead>

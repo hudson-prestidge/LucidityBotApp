@@ -2,8 +2,8 @@ var express = require('express');
 var db = require('../data/db')
 var router = express.Router();
 
-router.get('/', function(req, res) {
-  db.getCommands()
+router.get('/regularCommands', function(req, res) {
+  db.getRegularCommands()
     .then(function(commands) {
         res.send(commands)
     })
@@ -11,6 +11,26 @@ router.get('/', function(req, res) {
       console.log(err)
     })
 })
+
+router.get('/triggerPhrases', function(req, res) {
+  db.getTriggerPhrases()
+    .then(function(commands) {
+        res.send(commands)
+    })
+    .catch(function(err){
+      console.log(err)
+    })
+})
+
+// router.get('/scheduledCommands', function(req, res) {
+//   db.getCommands()
+//     .then(function(commands) {
+//         res.send(commands)
+//     })
+//     .catch(function(err){
+//       console.log(err)
+//     })
+// })
 
 router.post('/', function(req, res) {
   db.addCommand(req.body.name, req.body.response)

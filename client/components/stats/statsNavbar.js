@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 
-export default class Navbar extends React.Component {
+export default class StatsNavbar extends React.Component {
   render () {
     return (
       <div className='row navbar'>
