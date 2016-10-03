@@ -2,7 +2,7 @@ import React from 'react'
 import $ from 'jquery'
 import rcjs from 'react-chartjs'
 import { Link } from 'react-router'
-import StatsNavbar from './stats/statsNavbar'
+import StatsNavbar from './statsNavbar'
 
 var BarChart = rcjs.Bar
 

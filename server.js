@@ -3,9 +3,6 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var path = require('path')
 var port = process.env.PORT || 3002
-var users = require('./server/routes/users')
-var commands = require('./server/routes/commands')
-var words = require('./server/routes/words')
 var exphbs = require('express-handlebars')
 //server config stuff, should split?
 var passport = require('passport')
@@ -19,6 +16,10 @@ var bcrypt = require('bcrypt-nodejs')
 
 var config = require('./knexfile').development
 var knex = require('knex')(config)
+
+var users = require('./server/routes/users')
+var commands = require('./server/routes/commands')
+var words = require('./server/routes/words')
 
 var app = express()
 var server = http.createServer(app)
@@ -53,8 +54,7 @@ passport.deserializeUser(function(id, callback) {
 })
 
 var isAuthenticated = function(req, res, next) {
-  if (req.isAuthenticated())
-    return next()
+  if (req.isAuthenticated()) return next()
 
   req.flash('error', 'You must be logged in to access that page.')
   res.redirect('/login')
@@ -89,7 +89,14 @@ app.post('/login',
   }
 )
 
-app.get('*', function (req, res) {
+app.get('/logout',
+  function(req, res){
+    req.logout()
+    res.redirect('/login')
+  }
+)
+
+app.get('*', isAuthenticated, function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 

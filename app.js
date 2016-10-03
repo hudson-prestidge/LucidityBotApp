@@ -35,30 +35,30 @@ var app = express()
 //   }
 // ))
 
-app.use(express.static('public'))
-app.use(morgan('dev'))
-app.use(cookieParser())
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ cookie: { maxAge: 60000 }, secret: 'bodyparseristheworstthing', resave: false, saveUninitialized: false }))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(flash())
-app.use(bodyParser.json())
-
-app.use('/api/v1/users/', users)
-app.use('/api/v1/commands/', commands)
-app.use('/api/v1/words/', words)
+// app.use(express.static('public'))
+// app.use(morgan('dev'))
+// app.use(cookieParser())
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(session({ cookie: { maxAge: 60000 }, secret: 'bodyparseristheworstthing', resave: false, saveUninitialized: false }))
+// app.use(passport.initialize())
+// app.use(passport.session())
+// app.use(flash())
+// app.use(bodyParser.json())
 //
-// app.get('/login', function(req, res) {
-//   res.render('login')
-// })
+// app.use('/api/v1/users/', users)
+// app.use('/api/v1/commands/', commands)
+// app.use('/api/v1/words/', words)
+// //
+// // app.get('/login', function(req, res) {
+// //   res.render('login')
+// // })
+// //
+// // app.get('*', function (req, res) {
+// //   res.sendFile(path.join(__dirname, 'public', 'index.html'))
+// // })
 //
-// app.get('*', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'public', 'index.html'))
-// })
-
-
-app.use('/api/v1/users', users)
-app.use('/api/v1/words', words)
+//
+// app.use('/api/v1/users', users)
+// app.use('/api/v1/words', words)
 
 module.exports = app
