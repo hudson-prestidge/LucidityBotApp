@@ -59,11 +59,19 @@ export default class triggerPhrases extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.commands ? this.state.commands.map((command, i) => <tr key={i}> <td className='command'>{command.name}</td><td>{command.response}</td><td><Link to={command.linkString}> Edit Command </Link></td><td><a onClick={this.clickHandler}>Delete Command</a></td></tr>) : null}
+              {this.state.commands ?
+                this.state.commands.map((command, i) =>
+                    <tr key={i}>
+                      <td className='command'>{command.name}</td>
+                      <td>{command.response}</td>
+                      <td><Link to={command.linkString}> Edit Phrase </Link></td>
+                      <td><a onClick={this.clickHandler}>Delete Phrase</a></td>
+                    </tr>)
+                : null}
             </tbody>
           </table>
         </div>
-        <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/new' > Add New Command </Link>
+        <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/new' > Add New Phrase </Link>
       </div>
     )
   }
