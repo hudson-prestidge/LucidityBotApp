@@ -10,6 +10,8 @@ import EditCommandForm from './components/commands/editcommandform'
 import MostActiveUsersGraph from './components/stats/mostActiveUsersGraph'
 import MostObnoxiousUsersGraph from './components/stats/mostObnoxiousUsersGraph'
 import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
+import RegularCommands from './components/commands/regularCommands'
+import TriggerPhrases from './components/commands/triggerPhrases'
 
   render(
     <Router history={browserHistory}>
@@ -17,9 +19,9 @@ import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
         <IndexRoute component={Home}/>
         <Route path="/home" component={Home}/>
         <Route path="/commands" component={Commands}>
-          <Route path="/regularCommands" component={MostActiveUsersGraph}/>
-          <Route path="/triggerPhrases" component={MostObnoxiousUsersGraph}/>
-          <Route path="/scheduledCommands" component={MostUsedWordsGraph}/>
+          <Route path="/commands/regularCommands" component={RegularCommands}/>
+          <Route path="/commands/triggerPhrases" component={TriggerPhrases}/>
+          <Route path="/commands/scheduledCommands" component={MostUsedWordsGraph}/>
         </Route>
         <Route path="/commands/new" component={CommandForm}/>
         <Route path="/commands/:id" component={EditCommandForm}/>
