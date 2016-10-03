@@ -49,7 +49,6 @@ export default class RegularCommands extends React.Component {
   render () {
     return (
       <div>
-        <div className="container command-container">
           <h1> List of Bot Commands </h1>
           <table>
             <thead>
@@ -70,7 +69,6 @@ export default class RegularCommands extends React.Component {
                 : null}
             </tbody>
           </table>
-        </div>
         <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/new' > Add New Command </Link>
       </div>
     )
