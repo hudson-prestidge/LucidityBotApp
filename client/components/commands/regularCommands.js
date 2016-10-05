@@ -44,8 +44,6 @@ export default class RegularCommands extends React.Component {
     })
   }
 
-
-
   render () {
     return (
       <div>

@@ -17,5 +17,3 @@ export default class Commands extends React.Component {
     )
   }
 }
-
-//{this.state.commands ? this.state.commands.map((command, i) => {<Command body={command} key={i} />}) : null}
