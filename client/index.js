@@ -2,21 +2,27 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import App from './components/App'
-import Commands from './components/commands'
-import Stats from './components/stats'
+import Commands from './components/commands/commands'
+import Stats from './components/stats/stats'
 import Home from './components/home'
-import CommandForm from './components/commandform'
-import EditCommandForm from './components/editcommandform'
+import CommandForm from './components/commands/commandform'
+import EditCommandForm from './components/commands/editcommandform'
 import MostActiveUsersGraph from './components/stats/mostActiveUsersGraph'
 import MostObnoxiousUsersGraph from './components/stats/mostObnoxiousUsersGraph'
 import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
+import RegularCommands from './components/commands/regularCommands'
+import TriggerPhrases from './components/commands/triggerPhrases'
 
   render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={Home}/>
         <Route path="/home" component={Home}/>
-        <Route path="/commands" component={Commands}/>
+        <Route path="/commands" component={Commands}>
+          <Route path="/commands/regularCommands" component={RegularCommands}/>
+          <Route path="/commands/triggerPhrases" component={TriggerPhrases}/>
+          <Route path="/commands/scheduledCommands" component={MostUsedWordsGraph}/>
+        </Route>
         <Route path="/commands/new" component={CommandForm}/>
         <Route path="/commands/:id" component={EditCommandForm}/>
         <Route path="/stats" component = {Stats}>

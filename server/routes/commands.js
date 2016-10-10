@@ -1,9 +1,12 @@
 var express = require('express');
 var db = require('../data/db')
+var bodyParser = require('body-parser')
 var router = express.Router();
 
-router.get('/', function(req, res) {
-  db.getCommands()
+var jsonParser = bodyParser.urlencoded({ extended: false })
+
+router.get('/regularCommands', function(req, res) {
+  db.getRegularCommands()
     .then(function(commands) {
         res.send(commands)
     })
@@ -12,16 +15,38 @@ router.get('/', function(req, res) {
     })
 })
 
-router.post('/', function(req, res) {
-  db.addCommand(req.body.name, req.body.response)
-    .then(function(data){
-
+router.get('/triggerPhrases', function(req, res) {
+  db.getTriggerPhrases()
+    .then(function(commands) {
+        res.send(commands)
+    })
+    .catch(function(err){
+      console.log(err)
     })
 })
 
-router.post('/:id', function(req, res) {
+// router.get('/scheduledCommands', function(req, res) {
+//   db.getCommands()
+//     .then(function(commands) {
+//         res.send(commands)
+//     })
+//     .catch(function(err){
+//       console.log(err)
+//     })
+// })
+
+router.post('/', jsonParser, function(req, res) {
+  console.log(req.body);
+  db.addCommand(req.body.name, req.body.response)
+    .then(function(data){
+      res.redirect('/commands')
+    })
+})
+
+router.put('/:id', function(req, res) {
   db.updateCommand(req.params.id, req.body.name, req.body.response)
     .then(function(data){
+      res.redirect('/commands')
     })
 })
 

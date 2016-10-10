@@ -14,7 +14,17 @@ Stats about a particular user. Currently returns messagecount for a particular u
 ideas we can add:
 
 Responsiveness/mobile friendliness is a cool feature
-Authentication is mandatory but currently not practical
+Auth is underway, 90% complete
+So much styling!
+
+updates for Commands Table:
+scrollable list? pages of commands? giant wall of commands is not terribly approachable
+scheduled command implementation + list of them
+restful routes for commands
+
+updates for stats page:
+I want more graphs and more varied graphs!
+
 
 stats page:
 individual user stats

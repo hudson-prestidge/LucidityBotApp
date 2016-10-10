@@ -66,7 +66,7 @@ export default class MostObnoxiousUsers extends React.Component {
     return (
       <div id='mostObnoxiousUserChart' className='chart'>
         {this.state.obnoxiousUserData ? <BarChart data={this.getObnoxiousUserChartData()} width={400} height={400} /> : null}
-        <div className='legend'>Most Obnoxious Users</div>
+        <div className='legend'>Most <abbr title="Users who mention the streamer by name the most"> Obnoxious</abbr> Users</div>
       </div>
     )
   }

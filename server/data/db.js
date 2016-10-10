@@ -3,10 +3,14 @@ var knex = require('knex')(config)
 var _ = require('underscore')
 var commonWords = require('./commonwords')
 
-// getMostUsedWords().then(function(arr){console.log(arr);})
-
-function getCommands() {
+function getRegularCommands() {
   return knex('commands')
+        .where('trigger', false)
+}
+
+function getTriggerPhrases() {
+  return knex('commands')
+        .where('trigger', true)
 }
 
 function addCommand(name, response) {
@@ -60,6 +64,7 @@ function getMostUsedWords() {
         .countBy(function(e){return e.toLowerCase()})
         //turn that object into an array with ['word', number of times word was said]
         .pairs()
+        //filter out any words in the commonly used words list
         .filter(function(w){return commonWords.indexOf(w[0]) == -1})
         //sort by MOST commonly used word
         .sortBy(function(a){return -a[1]})
@@ -117,7 +122,8 @@ module.exports = {
   getMostUsedWords: getMostUsedWords,
   getMostObnoxiousUsers: getMostObnoxiousUsers,
   getUserMessageCount: getUserMessageCount,
-  getCommands: getCommands,
+  getRegularCommands: getRegularCommands,
+  getTriggerPhrases: getTriggerPhrases,
   addCommand: addCommand,
   addTrigger: addTrigger,
   deleteCommand: deleteCommand,
