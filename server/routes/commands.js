@@ -39,13 +39,14 @@ router.post('/', jsonParser, function(req, res) {
   console.log(req.body);
   db.addCommand(req.body.name, req.body.response)
     .then(function(data){
-      res.redirect('/commands ')
+      res.redirect('/commands')
     })
 })
 
 router.put('/:id', function(req, res) {
   db.updateCommand(req.params.id, req.body.name, req.body.response)
     .then(function(data){
+      res.redirect('/commands')
     })
 })
 

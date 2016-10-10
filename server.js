@@ -85,7 +85,7 @@ app.get('/login', function(req, res) {
 app.post('/login',
   passport.authenticate('login', { failureRedirect: '/login', failureFlash: true } ),
   function(req, res) {
-    res.redirect('/')
+    res.redirect('app/')
   }
 )
 
@@ -96,8 +96,8 @@ app.get('/logout',
   }
 )
 
-app.get('*', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+app.get('/app/*', isAuthenticated, function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'app.html'))
 })
 
 if (require.main === module) {
