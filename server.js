@@ -96,7 +96,7 @@ app.get('/logout',
   }
 )
 
-app.get('/app/*', isAuthenticated, function (req, res) {
+app.get('/', isAuthenticated, function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'app.html'))
 })
 

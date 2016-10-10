@@ -8,8 +8,6 @@ export default class Commands extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {currentCommandId: null}
-    console.log(this.state)
   }
 
   render () {
