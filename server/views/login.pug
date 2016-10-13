@@ -1,31 +1,15 @@
-doctype html
-html(lang="en")
-head
-    meta(charset="utf-8")
-    title Hudson
-body
+extends ./layouts/main
+block content
+  h1 Sign In
   ul
-    li
-      a(href="/home") home
-    li
-      a(href="/secret") secret
-    if user
-      li
-        a(href="/logout") logout user.username
-    else
-      li
-        a(href="/login") login
+    each val in messages
+      li= val
 
-    h1 Sign In
-    ul
-      each val in messages
-        li= val
+  form(method="POST")
+    label(for="username") Username
+    input(type="text" name="username")
 
-    form(method="POST")
-      label(for="username") Username
-      input(type="text" name="username")
+    label(for="password") Password
+    input(type="password" name="password")
 
-      label(for="password") Password
-      input(type="password" name="password")
-
-      input(type="submit")
+    input(type="submit")
