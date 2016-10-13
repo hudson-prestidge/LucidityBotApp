@@ -11,17 +11,17 @@ var http = require('http')
 var path = require('path')
 var pug = require('pug')
 
-var config = require('./knexfile').development
+var config = require('../knexfile').development
 var knex = require('knex')(config)
 
-var users = require('./server/routes/users')
-var commands = require('./server/routes/commands')
-var words = require('./server/routes/words')
+var users = require('./routes/users')
+var commands = require('./routes/commands')
+var words = require('./routes/words')
 
 var app = express()
 var server = http.createServer(app)
 
-app.set('views', path.join(__dirname, './server/views'))
+app.set('views', path.join(__dirname, './views'))
 app.set('view engine', 'pug');
 
 app.use(express.static('public'))
@@ -93,23 +93,23 @@ app.get('/logout',
 )
 
 app.get('/commands', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'app.html'))
+  res.sendFile(path.join(__dirname, '../public', 'app.html'))
 })
 
 app.get('/users', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'app.html'))
+  res.sendFile(path.join(__dirname, '../public', 'app.html'))
 })
 
 app.get('/stats', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'app.html'))
+  res.sendFile(path.join(__dirname, '../public', 'app.html'))
 })
 
 app.get('/home', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'app.html'))
+  res.sendFile(path.join(__dirname, '../public', 'app.html'))
 })
 
 app.get('/', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'app.html'))
+  res.sendFile(path.join(__dirname, '../public', 'app.html'))
 })
 
 module.exports = app
