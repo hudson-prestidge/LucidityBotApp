@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+head
+    meta(charset="utf-8")
+    title Hudson
+body
+  ul
+    li
+      a(href="/home") home
+    li
+      a(href="/secret") secret
+    if user
+      li
+        a(href="/logout") logout user.username
+    else
+      li
+        a(href="/login") login
+    {{{body}}}
+</body>
+</html>

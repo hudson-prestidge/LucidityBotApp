@@ -4,6 +4,7 @@ var bodyParser = require('body-parser')
 var path = require('path')
 var port = process.env.PORT || 3002
 var exphbs = require('express-handlebars')
+var pug = require('pug')
 //server config stuff, should split?
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
@@ -24,9 +25,8 @@ var words = require('./server/routes/words')
 var app = express()
 var server = http.createServer(app)
 
-app.engine('handlebars', exphbs({defaultLayout: 'main', layoutsDir:'server/views/layouts',}));
 app.set('views', path.join(__dirname, './server/views'))
-app.set('view engine', 'handlebars');
+app.set('view engine', 'pug');
 
 app.use(express.static('public'))
 
@@ -85,7 +85,7 @@ app.get('/login', function(req, res) {
 app.post('/login',
   passport.authenticate('login', { failureRedirect: '/login', failureFlash: true } ),
   function(req, res) {
-    res.redirect('app/')
+    res.redirect('/')
   }
 )
 
@@ -95,6 +95,23 @@ app.get('/logout',
     res.redirect('/login')
   }
 )
+
+
+app.get('/commands', isAuthenticated, function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'app.html'))
+})
+
+app.get('/users', isAuthenticated, function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'app.html'))
+})
+
+app.get('/stats', isAuthenticated, function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'app.html'))
+})
+
+app.get('/home', isAuthenticated, function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'app.html'))
+})
 
 app.get('/', isAuthenticated, function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'app.html'))
