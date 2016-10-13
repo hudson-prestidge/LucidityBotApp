@@ -7,7 +7,6 @@ var bodyParser = require('body-parser')
 var morgan = require('morgan')
 var flash = require('connect-flash')
 var bcrypt = require('bcrypt-nodejs')
-var http = require('http')
 var path = require('path')
 var pug = require('pug')
 
@@ -19,7 +18,6 @@ var commands = require('./routes/commands')
 var words = require('./routes/words')
 
 var app = express()
-var server = http.createServer(app)
 
 app.set('views', path.join(__dirname, './views'))
 app.set('view engine', 'pug');
