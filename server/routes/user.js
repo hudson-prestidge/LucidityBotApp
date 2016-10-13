@@ -13,6 +13,4 @@ router.get('/obnoxious', function(req, res) {
 
 })
 
-//users who bug the streamer most!
-
 module.exports = router

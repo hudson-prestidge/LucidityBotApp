@@ -112,5 +112,4 @@ app.get('/', isAuthenticated, function (req, res) {
   res.sendFile(path.join(__dirname, 'public', 'app.html'))
 })
 
-
 module.exports = app
