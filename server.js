@@ -3,7 +3,6 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var path = require('path')
 var port = process.env.PORT || 3002
-var exphbs = require('express-handlebars')
 var pug = require('pug')
 //server config stuff, should split?
 var passport = require('passport')
