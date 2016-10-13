@@ -1,20 +1,19 @@
 doctype html
 html(lang="en")
-head
+  head
     meta(charset="utf-8")
     title Hudson
-body
-  ul
-    li
-      a(href="/home") home
-    li
-      a(href="/secret") secret
-    if user
+    link(to="../../../public/index.css" rel="stylesheet")
+  body
+    ul
       li
-        a(href="/logout") logout user.username
-    else
+        a(href="/home") home
       li
-        a(href="/login") login
+        a(href="/secret") secret
+      if user
+        li
+          a(href="/logout") logout user.username
+      else
+        li
+          a(href="/login") login
     block content
-</body>
-</html>

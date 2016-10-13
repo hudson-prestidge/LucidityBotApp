@@ -54,7 +54,6 @@ const isAuthenticated = function(req, res, next) {
   res.redirect('/login')
 }
 
-
 passport.use('login', new LocalStrategy(
   function(name, password, done) {
     knex('users').where('name', name).first().then(function(user){

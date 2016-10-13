@@ -1,27 +1,24 @@
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #222930;
+  background-color: #191631;
   color: #E9E9E9;
   font-size: 16px;
   font-family: 'Lato', sans-serif;
 }
 
 tr {
-  border: 1px solid #cc5200;
+  border: 1px solid #4A3B5A;
 }
 
 th, td {
   padding-right: 20px;
   padding-left: 20px;
-  border-right: 1px solid #cc5200;
+  border-right: 1px solid #4A3B5A;
 }
 
 td {
   text-align: left;
-}
-
-form {
 }
 
 table {
@@ -41,7 +38,7 @@ input, textarea {
 }
 
 .container {
-  border: 1px solid #cc5200;
+  border: 1px solid #4A3B5A;
   border-radius: 5px;
   background-color: #221430;
   padding: 30px;
@@ -52,7 +49,7 @@ input, textarea {
 }
 
 .navbar {
-  border: 1px solid #cc5200;
+  border: 1px solid #4A3B5A;
   background-color: #221430;
 }
 
@@ -61,14 +58,22 @@ input, textarea {
   font-size: 30px;
   min-height: 50px;
   line-height: 50px;
-  border-right: 1px solid #cc5200;
+  border-right: 1px solid #4A3B5A;
 }
 
 .navbutton {
   color: #E9E9E9;
   text-align: center;
   min-height: 50px;
-  line-height: 50px;
+  padding: 0.8em 0;
+  border-right: 1px solid #4A3B5A;
+}
+
+.addbutton {
+  color: #E9E9E9;
+  text-align: center;
+  min-height: 50px;
+  padding: 0.8em 0;
 }
 
 .smalltext {
@@ -77,21 +82,8 @@ input, textarea {
 
 .chart {
   display: inline-block;
-  margin-bottom: 50px;
-  margin-left: 60px;
-}
-
-#mostActiveUserChart {
-
-}
-
-#mostObnoxiousUserChart {
-}
-
-#mostUsedWordChart {
-  margin-left: 260px;
 }
 
 /*#222930
-#cc5200
+#4A3B5A
 #E9E9E9*/

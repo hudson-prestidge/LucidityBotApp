@@ -64,8 +64,8 @@ export default class MostUsedWords extends React.Component {
 
   render() {
     return(
-      <div id='mostUsedWordChart' className='chart'>
-        {this.state.wordUsageData ? <BarChart data={this.getWordUsageChartData()} width={400} height={400} /> : null}
+      <div id='mostUsedWordChart' className='chart col-md-6 col-md-offset-3'>
+        {this.state.wordUsageData ? <BarChart data={this.getWordUsageChartData()} width={600} height={600} /> : null}
         <div className='legend'>Most Used Words</div>
       </div>
     )

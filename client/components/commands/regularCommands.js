@@ -67,7 +67,7 @@ export default class RegularCommands extends React.Component {
                 : null}
             </tbody>
           </table>
-        <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/new' > Add New Command </Link>
+        <Link className='col-md-2 col-md-offset-5 addbutton' to='/commands/new' > Add New Command </Link>
       </div>
     )
   }

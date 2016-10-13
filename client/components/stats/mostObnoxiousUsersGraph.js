@@ -64,8 +64,8 @@ export default class MostObnoxiousUsers extends React.Component {
 
   render () {
     return (
-      <div id='mostObnoxiousUserChart' className='chart'>
-        {this.state.obnoxiousUserData ? <BarChart data={this.getObnoxiousUserChartData()} width={400} height={400} /> : null}
+      <div id='mostObnoxiousUserChart' className='chart col-md-6 col-md-offset-3'>
+        {this.state.obnoxiousUserData ? <BarChart data={this.getObnoxiousUserChartData()} width={600} height={600} /> : null}
         <div className='legend'>Most <abbr title="Users who mention the streamer by name the most"> Obnoxious</abbr> Users</div>
       </div>
     )

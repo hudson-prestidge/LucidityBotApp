@@ -64,8 +64,8 @@ export default class MostActiveUsers extends React.Component {
 
   render () {
     return (
-      <div id='mostActiveUserChart' className='chart'>
-        {this.state.activeUserData ? <BarChart data={this.getActiveUserChartData()} width={400} height={400} /> : null}
+      <div id='mostActiveUserChart' className='chart col-md-6 col-md-offset-3'>
+        {this.state.activeUserData ? <BarChart data={this.getActiveUserChartData()} width={600} height={600} /> : null}
         <div className='legend'>Most Active Users</div>
       </div>
     )
