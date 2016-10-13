@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server/server.js",
     "dev": "NODE_ENV=development npm-run-all -p dev:*",
     "build": "browserify client/index.js -o public/bundle.js -t babelify -dv",
     "dev:watch": "watchify client/index.js -o public/bundle.js -t babelify -dv"
