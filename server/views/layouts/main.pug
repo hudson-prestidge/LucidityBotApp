@@ -3,17 +3,7 @@ html(lang="en")
   head
     meta(charset="utf-8")
     title Hudson
-    link(to="../../../public/index.css" rel="stylesheet")
+    link(href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u")
+    link(href="/index.css" rel="stylesheet" type="text/css")
   body
-    ul
-      li
-        a(href="/home") home
-      li
-        a(href="/secret") secret
-      if user
-        li
-          a(href="/logout") logout user.username
-      else
-        li
-          a(href="/login") login
     block content
