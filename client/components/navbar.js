@@ -19,7 +19,7 @@ export default class Navbar extends React.Component {
         <Link className='col-md-2 navbutton' to='/home' > Home </Link>
         <Link className='col-md-2 navbutton' to='/commands' > Commands </Link>
         <Link className='col-md-2 navbutton' to='/stats' > Stats </Link>
-        <button onClick={this.logout}> Logout </button>
+        <button className='logout-btn' onClick={this.logout}> Logout </button>
       </div>
     )
   }
