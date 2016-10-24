@@ -8,6 +8,7 @@ import CommandForm from './components/commands/commandform'
 import EditCommandForm from './components/commands/editcommandform'
 import RegularCommands from './components/commands/regularCommands'
 import TriggerPhrases from './components/commands/triggerPhrases'
+import ScheduledCommands from './components/commands/scheduledCommands'
 import Stats from './components/stats/stats'
 import MostActiveUsersGraph from './components/stats/mostActiveUsersGraph'
 import MostObnoxiousUsersGraph from './components/stats/mostObnoxiousUsersGraph'
@@ -21,7 +22,7 @@ import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
         <Route path="/commands" component={Commands}>
           <Route path="/commands/regularCommands" component={RegularCommands}/>
           <Route path="/commands/triggerPhrases" component={TriggerPhrases}/>
-          <Route path="/commands/scheduledCommands" component={MostUsedWordsGraph}/>
+          <Route path="/commands/scheduledCommands" component={ScheduledCommands}/>
         </Route>
         <Route path="/commands/new" component={CommandForm}/>
         <Route path="/commands/:id" component={EditCommandForm}/>
