@@ -1,15 +1,16 @@
 extends ./layouts/main
 block content
-  h1 Sign In
-  ul
-    each val in messages
-      li= val
+  div(class="container login-container")
+    h1.title Sign In
+    ul
+      each val in messages
+        li.error-msg= val
 
-  form(method="POST")
-    label(for="username") Username
-    input(type="text" name="username")
+    form.login-form(method="POST")
+      label(for="username") Username
+      input(type="text" name="username")
 
-    label(for="password") Password
-    input(type="password" name="password")
+      label(for="password") Password
+      input(type="password" name="password")
 
-    input(type="submit")
+      input.login-btn(type="submit" value="Log In")

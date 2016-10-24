@@ -69,7 +69,7 @@ export default class triggerPhrases extends React.Component {
                 : null}
             </tbody>
           </table>
-        <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/new' > Add New Phrase </Link>
+        <Link className='col-md-2 col-md-offset-5 addbutton' to='/commands/new' > Add New Phrase </Link>
       </div>
     )
   }
