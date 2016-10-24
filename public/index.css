@@ -8,6 +8,7 @@ html, body {
 }
 
 tr {
+  width: 80%;
   border: 1px solid #4A3B5A;
 }
 
