@@ -13,6 +13,11 @@ function getTriggerPhrases() {
         .where('trigger', true)
 }
 
+function getScheduledCommands() {
+  return knex('scheduled_commands')
+      .innerJoin('commands', 'commands.id', 'scheduled_commands.command_id')
+}
+
 function addCommand(name, response) {
   return knex('commands')
     .insert({
@@ -103,15 +108,16 @@ function getUserById(id){
 }
 
 module.exports = {
-  getMostActiveUserIds: getMostActiveUserIds,
-  getUserById: getUserById,
-  getMostUsedWords: getMostUsedWords,
-  getMostObnoxiousUsers: getMostObnoxiousUsers,
-  getUserMessageCount: getUserMessageCount,
-  getRegularCommands: getRegularCommands,
-  getTriggerPhrases: getTriggerPhrases,
-  addCommand: addCommand,
-  addTrigger: addTrigger,
-  deleteCommand: deleteCommand,
-  updateCommand: updateCommand
+  getMostActiveUserIds,
+  getUserById,
+  getMostUsedWords,
+  getMostObnoxiousUsers,
+  getUserMessageCount,
+  getRegularCommands,
+  getTriggerPhrases,
+  addCommand,
+  addTrigger,
+  deleteCommand,
+  updateCommand,
+  getScheduledCommands
 }

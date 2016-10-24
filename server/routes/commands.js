@@ -25,15 +25,15 @@ router.get('/triggerPhrases', function(req, res) {
     })
 })
 
-// router.get('/scheduledCommands', function(req, res) {
-//   db.getCommands()
-//     .then(function(commands) {
-//         res.send(commands)
-//     })
-//     .catch(function(err){
-//       console.log(err)
-//     })
-// })
+router.get('/scheduledCommands', function(req, res) {
+  db.getScheduledCommands()
+    .then(function(commands) {
+        res.send(commands)
+    })
+    .catch(function(err){
+      console.log(err)
+    })
+})
 
 router.post('/', jsonParser, function(req, res) {
   console.log(req.body);
