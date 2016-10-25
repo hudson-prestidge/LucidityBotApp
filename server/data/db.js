@@ -46,6 +46,14 @@ function addTrigger() {
     })
 }
 
+function addScheduledCommand(id) {
+  return knex('scheduled_commands')
+        .insert({
+          command_id: id,
+          frequency: 600
+        })
+}
+
 function deleteCommand(commandId) {
   return knex('commands')
     .where('id', commandId)
@@ -138,5 +146,6 @@ module.exports = {
   updateCommand,
   getScheduledCommands,
   deleteScheduledCommand,
-  updateScheduledCommand
+  updateScheduledCommand,
+  addScheduledCommand
 }

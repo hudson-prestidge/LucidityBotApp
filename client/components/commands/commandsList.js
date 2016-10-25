@@ -1,11 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router'
+import request from 'superagent'
 
 
 export default class commandsList extends React.Component {
 
   constructor(props){
     super(props)
+  }
+
+  clickHandler(id) {
+    request.post('/api/v1/commands/scheduledCommands/new/' + id)
+      .end((err, res) => {     })
   }
 
   render () {
@@ -22,6 +28,7 @@ export default class commandsList extends React.Component {
           <tr key={i}>
             <td className='command'>{command.name}</td>
             <td>{command.response}</td>
+            <td><button onClick={() => this.clickHandler(command.id)}> Repeat This Command</button></td>
           </tr>)}
           </tbody>
       </table>

@@ -60,7 +60,7 @@ export default class ScheduledCommands extends React.Component {
         { this.state.showList ?
           <div>
             <h1> Select the command you want to repeat! </h1>
-            < CommandsList commands={this.state.commands}/>
+            < CommandsList commands={this.state.commands} parent={this}/>
           </div> :
           <div>
             <h1> List of Scheduled Bot Commands </h1>
