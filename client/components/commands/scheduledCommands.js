@@ -1,6 +1,8 @@
 import React from 'react'
 import $ from 'jquery'
+import request from 'superagent'
 import { Link } from 'react-router'
+
 import Command from './command'
 import CommandNavbar from './CommandNavbar'
 
@@ -14,14 +16,15 @@ export default class ScheduledCommands extends React.Component {
   }
 
   clickHandler(id) {
-    var self = this
-    $.ajax({
-      method: 'DELETE',
-      url: '/api/v1/commands/scheduledCommands/' + id,
-      success: function(data){
-        self.forceUpdate()
-      }
-    })
+    request.delete('/api/v1/commands/scheduledCommands/' + id)
+          .end((err, res) => this.forceUpdate())
+    // $.ajax({
+    //   method: 'DELETE',
+    //   url: '/api/v1/commands/scheduledCommands/' + id,
+    //   success: function(data){
+    //     self.forceUpdate()
+    //   }
+    // })
   }
 
   componentDidMount(){
@@ -36,7 +39,7 @@ export default class ScheduledCommands extends React.Component {
           response: d.response,
           id: d.id,
           frequency: d.frequency,
-          linkString: 'api/v1/commands/scheduledCommands/' + d.id
+          linkString: '/api/v1/commands/scheduledCommands/' + d.id
           }
         })
         self.setState({commands: commands })
@@ -56,7 +59,7 @@ componentWillUpdate(){
             response: d.response,
             id: d.id,
             frequency: d.frequency,
-            linkString: 'api/v1/commands/scheduledCommands/' + d.id
+            linkString: '/api/v1/commands/scheduledCommands/' + d.id
             }
           })
           self.setState({commands: commands })
@@ -84,7 +87,7 @@ componentWillUpdate(){
                     <td>{command.response}</td>
                     <td>
                       <form action={command.linkString} method='POST'>
-                        <input type='text' name='frequency' defaultValue={command.frequency}/>
+                        <input type='text' name='frequency' id='frequency' defaultValue={command.frequency}/>
                         <input type='submit' value='Edit Frequency'/>
                       </form>
                     </td>

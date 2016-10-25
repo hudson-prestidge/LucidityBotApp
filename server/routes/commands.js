@@ -38,14 +38,12 @@ router.get('/scheduledCommands', function(req, res) {
 router.post('/scheduledCommands/:id/', function(req, res) {
   db.updateScheduledCommand(req.params.id, req.body.frequency)
     .then(function(data){
-      res.redirect('/commands/scheduledCommands')
     })
 })
 
 router.delete('/scheduledCommands/:id/', function(req, res) {
   db.deleteScheduledCommand(req.params.id)
     .then(function(data){
-      res.redirect('/commands/scheduledCommands')
     })
 })
 
