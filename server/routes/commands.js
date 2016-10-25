@@ -5,6 +5,16 @@ var router = express.Router();
 
 var jsonParser = bodyParser.urlencoded({ extended: false })
 
+router.get('/', function(req, res){
+  db.getAllCommands()
+  .then(function(commands) {
+      res.send(commands)
+  })
+  .catch(function(err){
+    console.log(err)
+  })
+})
+
 router.get('/regularCommands', function(req, res) {
   db.getRegularCommands()
     .then(function(commands) {

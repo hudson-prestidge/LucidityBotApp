@@ -21,12 +21,13 @@ export default class ScheduledCommands extends React.Component {
   }
 
   componentDidMount(){
-    this.getScheduledCommands();
+    this.getScheduledCommands()
+    this.getCommands()
   }
 
   getScheduledCommands() {
     request('/api/v1/commands/scheduledCommands', (err, res) => {
-      var commands = JSON.parse(res.text).map(d => {
+      var scheduledCommands = JSON.parse(res.text).map(d => {
         return {
         name: d.name,
         response: d.response,
@@ -35,7 +36,21 @@ export default class ScheduledCommands extends React.Component {
         linkString: '/api/v1/commands/scheduledCommands/' + d.id
         }
       })
-    this.setState({commands: commands })
+    this.setState({scheduledCommands: scheduledCommands })
+    })
+  }
+
+  getCommands() {
+    request('/api/v1/commands/', (err, res) => {
+      var commands = JSON.parse(res.text).map(d => {
+        return {
+        name: d.name,
+        response: d.response,
+        id: d.id,
+        linkString: '/api/v1/commands/' + d.id
+        }
+      })
+      this.setState({commands: commands })
     })
   }
 
@@ -58,8 +73,8 @@ export default class ScheduledCommands extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.commands ?
-                  this.state.commands.map((command, i) =>
+                  {this.state.scheduledCommands ?
+                  this.state.scheduledCommands.map((command, i) =>
                     <tr key={i}>
                       <td className='command'>{command.name}</td>
                       <td>{command.response}</td>
