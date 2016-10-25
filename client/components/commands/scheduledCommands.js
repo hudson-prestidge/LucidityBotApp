@@ -4,7 +4,6 @@ import { Link } from 'react-router'
 
 import Command from './command'
 import CommandNavbar from './commandNavbar'
-import CommandsList from './commandsList'
 
 export default class ScheduledCommands extends React.Component {
 
@@ -15,9 +14,14 @@ export default class ScheduledCommands extends React.Component {
     }
   }
 
-  clickHandler(id) {
+  deleteScheduledCommand(id) {
     request.del('/api/v1/commands/scheduledCommands/' + id)
           .end((err, res) => this.getScheduledCommands())
+  }
+
+  addScheduledCommand(id) {
+    request.post('/api/v1/commands/scheduledCommands/new/' + id)
+      .end((err, res) => this.getScheduledCommands() )
   }
 
   componentDidMount(){
@@ -36,7 +40,7 @@ export default class ScheduledCommands extends React.Component {
         linkString: '/api/v1/commands/scheduledCommands/' + d.id
         }
       })
-    this.setState({scheduledCommands: scheduledCommands })
+    this.setState({showList: false, scheduledCommands: scheduledCommands })
     })
   }
 
@@ -60,7 +64,22 @@ export default class ScheduledCommands extends React.Component {
         { this.state.showList ?
           <div>
             <h1> Select the command you want to repeat! </h1>
-            < CommandsList commands={this.state.commands} parent={this}/>
+            <table>
+              <thead>
+                <tr>
+                  <th> Command </th>
+                  <th> Response </th>
+                </tr>
+              </thead>
+              <tbody>
+               {this.state.commands.map((command, i) =>
+                <tr key={i}>
+                  <td className='command'>{command.name}</td>
+                  <td>{command.response}</td>
+                  <td><button onClick={() => this.addScheduledCommand(command.id)}> Repeat This Command</button></td>
+                </tr>)}
+                </tbody>
+            </table>
           </div> :
           <div>
             <h1> List of Scheduled Bot Commands </h1>
@@ -84,7 +103,7 @@ export default class ScheduledCommands extends React.Component {
                           <input type='submit' name="commit" value='Set Frequency'/>
                         </form>
                       </td>
-                      <td><button onClick={() => this.clickHandler(command.id)}> Stop Repeating </button></td>
+                      <td><button onClick={() => this.deleteScheduledCommand(command.id)}> Stop Repeating </button></td>
                     </tr>)
                   : null}
               </tbody>

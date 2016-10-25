@@ -48,6 +48,7 @@ router.get('/scheduledCommands', function(req, res) {
 router.post('/scheduledCommands/new/:id', function(req, res) {
   db.addScheduledCommand(req.params.id)
     .then(function(data){
+      res.send(200)
     })
 })
 
