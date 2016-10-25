@@ -132,5 +132,6 @@ module.exports = {
   deleteCommand,
   updateCommand,
   getScheduledCommands,
-  deleteScheduledCommand
+  deleteScheduledCommand,
+  updateScheduledCommand
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import $ from 'jquery'
 import request from 'superagent'
 import { Link } from 'react-router'
 
@@ -60,7 +59,7 @@ export default class ScheduledCommands extends React.Component {
                     <td>
                       <form action={command.linkString} method='POST'>
                         <input type='text' name='frequency' id='frequency' defaultValue={command.frequency}/>
-                        <input type='submit' value='Edit Frequency'/>
+                        <input type='submit' name="commit" value='Set Frequency'/>
                       </form>
                     </td>
                     <td><button onClick={() => this.clickHandler(command.id)}> Stop Repeating </button></td>

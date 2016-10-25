@@ -35,10 +35,9 @@ router.get('/scheduledCommands', function(req, res) {
     })
 })
 
-router.post('/scheduledCommands/:id/', function(req, res) {
+router.post('/scheduledCommands/:id/', jsonParser, function(req, res) {
   db.updateScheduledCommand(req.params.id, req.body.frequency)
     .then(function(data){
-      res.send(200)
     })
 })
 
@@ -50,17 +49,14 @@ router.delete('/scheduledCommands/:id/', function(req, res) {
 })
 
 router.post('/', jsonParser, function(req, res) {
-  console.log(req.body);
   db.addCommand(req.body.name, req.body.response)
     .then(function(data){
-      res.send(200)
     })
 })
 
 router.put('/:id', function(req, res) {
   db.updateCommand(req.params.id, req.body.name, req.body.response)
     .then(function(data){
-      res.send(200)
     })
 })
 
