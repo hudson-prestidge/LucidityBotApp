@@ -13,14 +13,30 @@ export default class RegularCommands extends React.Component {
     }
   }
 
-  clickHandler() {
+  clickHandler(id) {
     var self = this
-    console.log(this.props.command);
     $.ajax({
-      method: 'delete',
-      url: '/api/v1/commands/',
-      success: function(data){
+      method: 'DELETE',
+      url: '/api/v1/commands/' + id,
+      success: (data) => self.forceUpdate()
+    })
+  }
 
+  componentDidMount(){
+    var self = this
+    $.ajax({
+      method: 'get',
+      url: '/api/v1/commands/regularCommands',
+      success: function(data){
+        var commands = data.map(function(d){
+          return{
+          name: d.name,
+          response: d.response,
+          id: d.id,
+          linkString: '/commands/' + d.id
+          }
+        })
+        self.setState({commands: commands })
       }
     })
   }
@@ -48,6 +64,7 @@ export default class RegularCommands extends React.Component {
     return (
       <div>
           <h1> List of Bot Commands </h1>
+          <Link className='col-md-2 col-md-offset-5 addbutton' to='/commands/new' > Add New Command </Link>
           <table>
             <thead>
               <tr>
@@ -62,7 +79,7 @@ export default class RegularCommands extends React.Component {
                     <td className='command'>{command.name}</td>
                     <td>{command.response}</td>
                     <td><Link to={command.linkString}> Edit Command </Link></td>
-                    <td><a onClick={this.clickHandler}>Delete Command</a></td>
+                    <td><button onClick={() => this.clickHandler(command.id)}> Delete Command </button></td>
                   </tr>)
                 : null}
             </tbody>

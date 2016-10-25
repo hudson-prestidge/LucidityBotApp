@@ -3,6 +3,10 @@ var knex = require('knex')(config)
 var _ = require('underscore')
 var commonWords = require('./commonwords')
 
+function getAllCommands() {
+  return knex('commands')
+}
+
 function getRegularCommands() {
   return knex('commands')
         .where('trigger', false)
@@ -11,6 +15,17 @@ function getRegularCommands() {
 function getTriggerPhrases() {
   return knex('commands')
         .where('trigger', true)
+}
+
+function getScheduledCommands() {
+  return knex('commands')
+      .innerJoin('scheduled_commands', 'scheduled_commands.command_id','commands.id')
+}
+
+function updateScheduledCommand(id, frequency) {
+  return knex('scheduled_commands')
+        .where('id', id)
+        .update('frequency', frequency)
 }
 
 function addCommand(name, response) {
@@ -31,8 +46,22 @@ function addTrigger() {
     })
 }
 
+function addScheduledCommand(id) {
+  return knex('scheduled_commands')
+        .insert({
+          command_id: id,
+          frequency: 600
+        })
+}
+
 function deleteCommand(commandId) {
   return knex('commands')
+    .where('id', commandId)
+    .del()
+}
+
+function deleteScheduledCommand(commandId) {
+  return knex('scheduled_commands')
     .where('id', commandId)
     .del()
 }
@@ -103,15 +132,20 @@ function getUserById(id){
 }
 
 module.exports = {
-  getMostActiveUserIds: getMostActiveUserIds,
-  getUserById: getUserById,
-  getMostUsedWords: getMostUsedWords,
-  getMostObnoxiousUsers: getMostObnoxiousUsers,
-  getUserMessageCount: getUserMessageCount,
-  getRegularCommands: getRegularCommands,
-  getTriggerPhrases: getTriggerPhrases,
-  addCommand: addCommand,
-  addTrigger: addTrigger,
-  deleteCommand: deleteCommand,
-  updateCommand: updateCommand
+  getMostActiveUserIds,
+  getUserById,
+  getMostUsedWords,
+  getMostObnoxiousUsers,
+  getUserMessageCount,
+  getAllCommands,
+  getRegularCommands,
+  getTriggerPhrases,
+  addCommand,
+  addTrigger,
+  deleteCommand,
+  updateCommand,
+  getScheduledCommands,
+  deleteScheduledCommand,
+  updateScheduledCommand,
+  addScheduledCommand
 }
