@@ -16,56 +16,28 @@ export default class ScheduledCommands extends React.Component {
   }
 
   clickHandler(id) {
-    request.delete('/api/v1/commands/scheduledCommands/' + id)
-          .end((err, res) => this.forceUpdate())
-    // $.ajax({
-    //   method: 'DELETE',
-    //   url: '/api/v1/commands/scheduledCommands/' + id,
-    //   success: function(data){
-    //     self.forceUpdate()
-    //   }
-    // })
+    request.del('/api/v1/commands/scheduledCommands/' + id)
+          .end((err, res) => this.getScheduledCommands())
   }
 
   componentDidMount(){
-    var self = this
-    $.ajax({
-      method: 'get',
-      url: '/api/v1/commands/scheduledCommands',
-      success: function(data){
-        var commands = data.map(function(d){
-          return{
-          name: d.name,
-          response: d.response,
-          id: d.id,
-          frequency: d.frequency,
-          linkString: '/api/v1/commands/scheduledCommands/' + d.id
-          }
-        })
-        self.setState({commands: commands })
-      }
-    })
+    this.getScheduledCommands();
   }
 
-componentWillUpdate(){
-      var self = this
-      $.ajax({
-        method: 'get',
-        url: '/api/v1/commands/scheduledCommands',
-        success: function(data){
-          var commands = data.map(function(d){
-            return{
-            name: d.name,
-            response: d.response,
-            id: d.id,
-            frequency: d.frequency,
-            linkString: '/api/v1/commands/scheduledCommands/' + d.id
-            }
-          })
-          self.setState({commands: commands })
+  getScheduledCommands() {
+    request('/api/v1/commands/scheduledCommands', (err, res) => {
+      var commands = JSON.parse(res.text).map(d => {
+        return {
+        name: d.name,
+        response: d.response,
+        id: d.id,
+        frequency: d.frequency,
+        linkString: '/api/v1/commands/scheduledCommands/' + d.id
         }
       })
-    }
+    this.setState({commands: commands })
+    })
+  }
 
   render () {
     return (
