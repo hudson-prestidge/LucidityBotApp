@@ -14,8 +14,14 @@ function getTriggerPhrases() {
 }
 
 function getScheduledCommands() {
+  return knex('commands')
+      .innerJoin('scheduled_commands', 'scheduled_commands.command_id','commands.id')
+}
+
+function updateScheduledCommand(id, frequency) {
   return knex('scheduled_commands')
-      .innerJoin('commands', 'commands.id', 'scheduled_commands.command_id')
+        .where('id', id)
+        .update('frequency', frequency)
 }
 
 function addCommand(name, response) {
@@ -38,6 +44,12 @@ function addTrigger() {
 
 function deleteCommand(commandId) {
   return knex('commands')
+    .where('id', commandId)
+    .del()
+}
+
+function deleteScheduledCommand(commandId) {
+  return knex('scheduled_commands')
     .where('id', commandId)
     .del()
 }
@@ -119,5 +131,6 @@ module.exports = {
   addTrigger,
   deleteCommand,
   updateCommand,
-  getScheduledCommands
+  getScheduledCommands,
+  deleteScheduledCommand
 }
