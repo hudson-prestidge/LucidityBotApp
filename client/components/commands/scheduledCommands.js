@@ -16,7 +16,7 @@ export default class ScheduledCommands extends React.Component {
 
   deleteScheduledCommand(id) {
     request.del('/api/v1/commands/scheduledCommands/' + id)
-          .end((err, res) => this.getScheduledCommands())
+      .end((err, res) => this.getScheduledCommands())
   }
 
   addScheduledCommand(id) {

@@ -31,17 +31,17 @@ function updateScheduledCommand(id, frequency) {
 function addCommand(name, response) {
   return knex('commands')
     .insert({
-      name: name,
-      response: response,
+      name,
+      response,
       trigger: false
     })
 }
 
-function addTrigger() {
+function addTrigger(name, response) {
   return knex('commands')
     .insert({
-      name: '',
-      response: '',
+      name,
+      response,
       trigger: true
     })
 }

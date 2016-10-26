@@ -4,8 +4,6 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import App from './components/App'
 import Home from './components/home'
 import Commands from './components/commands/commands'
-import CommandForm from './components/commands/commandform'
-import EditCommandForm from './components/commands/editcommandform'
 import RegularCommands from './components/commands/regularCommands'
 import TriggerPhrases from './components/commands/triggerPhrases'
 import ScheduledCommands from './components/commands/scheduledCommands'
@@ -20,12 +18,10 @@ import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
         <IndexRoute component={Home}/>
         <Route path="/home" component={Home}/>
         <Route path="/commands" component={Commands}>
-          <Route path="/commands/regularCommands" component={RegularCommands}/>
-          <Route path="/commands/triggerPhrases" component={TriggerPhrases}/>
-          <Route path="/commands/scheduledCommands" component={ScheduledCommands}/>
+          <Route path="regularCommands" component={RegularCommands}/>
+          <Route path="triggerPhrases" component={TriggerPhrases}/>
+          <Route path="scheduledCommands" component={ScheduledCommands}/>
         </Route>
-        <Route path="/commands/new" component={CommandForm}/>
-        <Route path="/commands/:id" component={EditCommandForm}/>
 
         <Route path="/stats" component = {Stats}>
           <Route path="/stats/activeusers" component={MostActiveUsersGraph}/>

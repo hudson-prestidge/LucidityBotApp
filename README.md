@@ -35,3 +35,8 @@ welcome message
 
 commands page:
 create table of commands
+
+There's a bug with the scheduled commands currently: when one is removed, the
+display of the frequency for the others breaks in some as yet unexplored way.
+
+many functions need to be converted to es6, and the jquery stuff needs to be moved to superagent. goals for weds!
