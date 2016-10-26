@@ -74,6 +74,7 @@ router.post('/', jsonParser, function(req, res) {
 router.post('/triggerPhrases', jsonParser, function(req, res) {
   db.addTrigger(req.body.name, req.body.response)
     .then(function(data){
+      res.redirect('back')
     })
 })
 
