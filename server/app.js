@@ -37,17 +37,11 @@ app.use(passport.session())
 app.use(flash())
 app.use(bodyParser.json())
 
-passport.serializeUser(function(user, callback) {
-  callback(null, user.id)
-})
+passport.serializeUser((user, callback) => callback(null, user.id) )
 
-passport.deserializeUser(function(id, callback) {
-  knex('users').where('id', id).first().then(function(user) {
-    callback(null, user)
-  })
-})
+passport.deserializeUser((id, callback) => knex('users').where('id', id).first().then((user) => callback(null, user)) )
 
-const isAuthenticated = function(req, res, next) {
+const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next()
 
   req.flash('error', 'You must be logged in to access that page.')
@@ -55,8 +49,8 @@ const isAuthenticated = function(req, res, next) {
 }
 
 passport.use('login', new LocalStrategy(
-  function(name, password, done) {
-    knex('users').where('name', name).first().then(function(user){
+  (name, password, done) => {
+    knex('users').where('name', name).first().then((user) => {
       if(user) {
         // if(bcrypt.compareSync(password, user.password)) {
         if(password === user.password) {
@@ -71,42 +65,28 @@ passport.use('login', new LocalStrategy(
   }
 ))
 
-app.get('/login', function(req, res) {
-  res.render('login', { messages: req.flash() })
-})
+app.get('/login', (req, res) => res.render('login', { messages: req.flash() }) )
 
 app.post('/login',
   passport.authenticate('login', { failureRedirect: '/login', failureFlash: true } ),
-  function(req, res) {
-    res.redirect('/')
-  }
+  (req, res) => res.redirect('/')
 )
 
 app.get('/logout',
-  function(req, res){
+  (req, res) => {
     req.logout()
     res.redirect('/login')
   }
 )
 
-app.get('/commands/*', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, '../public', 'app.html'))
-})
+app.get('/commands/*', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
 
-app.get('/users/*', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, '../public', 'app.html'))
-})
+app.get('/users/*', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
 
-app.get('/stats/*', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, '../public', 'app.html'))
-})
+app.get('/stats/*', isAuthenticated, (req, res) =>  res.sendFile(path.join(__dirname, '../public', 'app.html')) )
 
-app.get('/home/*', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, '../public', 'app.html'))
-})
+app.get('/home/*', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
 
-app.get('/', isAuthenticated, function (req, res) {
-  res.sendFile(path.join(__dirname, '../public', 'app.html'))
-})
+app.get('/', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
 
 module.exports = app

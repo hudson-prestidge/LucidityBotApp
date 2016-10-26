@@ -14,29 +14,21 @@ export default class MostActiveUsers extends React.Component {
   }
 
   componentDidMount(){
-    var self = this
-    self.getChartInfo()
-    setInterval(function(){
-      self.getChartInfo()
-    }, 3000)
+    this.getChartInfo()
+    setInterval(() => { this.getChartInfo() }, 3000)
   }
 
   getChartInfo() {
-  var self = this
   $.ajax({
     method: 'get',
     url: '/api/v1/users',
-    success: function(data){
-      self.setState({activeUserData: data})
-    }
+    success: data => this.setState({activeUserData: data})
   })
 }
 
   getActiveUserChartData(){
     var newObj = {
-      labels: this.state.activeUserData.map(function(r){
-        return r.name
-      }),
+      labels: this.state.activeUserData.map(r => r.name ),
       datasets:[{
         label: "My First dataset",
         fillColor: [
@@ -54,9 +46,7 @@ export default class MostActiveUsers extends React.Component {
             'rgba(153, 102, 255, 1)'
         ],
         borderWidth: 1,
-        data: this.state.activeUserData.map(function(r){
-          return r.count
-        })
+        data: this.state.activeUserData.map(r => r.count)
       }]
     }
     return newObj

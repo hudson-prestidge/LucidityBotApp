@@ -14,29 +14,21 @@ export default class MostUsedWords extends React.Component {
   }
 
   componentDidMount(){
-    var self = this
-    self.getChartInfo()
-    setInterval(function(){
-      self.getChartInfo()
-    }, 3000)
+    this.getChartInfo()
+    setInterval(() => this.getChartInfo() , 3000)
   }
 
   getChartInfo() {
-    var self = this
     $.ajax({
       method: 'get',
       url: '/api/v1/words',
-      success: function(data){
-        self.setState({wordUsageData: data})
-      }
+      success: data => { this.setState({wordUsageData: data}) }
     })
   }
 
   getWordUsageChartData(){
     var newObj = {
-      labels: this.state.wordUsageData.map(function(r){
-        return r[0]
-      }),
+      labels: this.state.wordUsageData.map(r => r[0] ),
       datasets:[{
         label: "My First dataset",
         fillColor: [
@@ -54,9 +46,7 @@ export default class MostUsedWords extends React.Component {
             'rgba(153, 102, 255, 1)'
         ],
         borderWidth: 1,
-        data: this.state.wordUsageData.map(function(r){
-          return r[1]
-        })
+        data: this.state.wordUsageData.map(r => r[1] )
       }]
     }
     return newObj

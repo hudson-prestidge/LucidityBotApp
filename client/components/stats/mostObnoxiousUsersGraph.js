@@ -14,29 +14,21 @@ export default class MostObnoxiousUsers extends React.Component {
   }
 
   componentDidMount(){
-    var self = this
-    self.getChartInfo()
-    setInterval(function(){
-      self.getChartInfo()
-    }, 3000)
+    this.getChartInfo()
+    setInterval(() => this.getChartInfo() , 3000)
   }
 
   getChartInfo(){
-    var self = this
     $.ajax({
       method: 'get',
       url: '/api/v1/users/obnoxious',
-      success: function(data){
-        self.setState({obnoxiousUserData: data})
-      }
+      success: data => this.setState({obnoxiousUserData: data})
     })
   }
 
   getObnoxiousUserChartData(){
     var newObj = {
-      labels: this.state.obnoxiousUserData.map(function(r){
-        return r.name
-      }),
+      labels: this.state.obnoxiousUserData.map(r => r.name ),
       datasets:[{
         label: "My First dataset",
         fillColor: [
@@ -54,9 +46,7 @@ export default class MostObnoxiousUsers extends React.Component {
             'rgba(153, 102, 255, 1)'
         ],
         borderWidth: 1,
-        data: this.state.obnoxiousUserData.map(function(r){
-          return r.count
-        })
+        data: this.state.obnoxiousUserData.map(r => r.count )
       }]
     }
     return newObj
