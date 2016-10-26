@@ -68,6 +68,7 @@ router.delete('/scheduledCommands/:id/', function(req, res) {
 router.post('/', jsonParser, function(req, res) {
   db.addCommand(req.body.name, req.body.response)
     .then(function(data){
+      res.redirect('back')
     })
 })
 
