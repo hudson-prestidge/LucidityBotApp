@@ -89,19 +89,19 @@ app.get('/logout',
   }
 )
 
-app.get('/commands', isAuthenticated, function (req, res) {
+app.get('/commands/*', isAuthenticated, function (req, res) {
   res.sendFile(path.join(__dirname, '../public', 'app.html'))
 })
 
-app.get('/users', isAuthenticated, function (req, res) {
+app.get('/users/*', isAuthenticated, function (req, res) {
   res.sendFile(path.join(__dirname, '../public', 'app.html'))
 })
 
-app.get('/stats', isAuthenticated, function (req, res) {
+app.get('/stats/*', isAuthenticated, function (req, res) {
   res.sendFile(path.join(__dirname, '../public', 'app.html'))
 })
 
-app.get('/home', isAuthenticated, function (req, res) {
+app.get('/home/*', isAuthenticated, function (req, res) {
   res.sendFile(path.join(__dirname, '../public', 'app.html'))
 })
 

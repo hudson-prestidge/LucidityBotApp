@@ -20,9 +20,9 @@ import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
         <IndexRoute component={Home}/>
         <Route path="/home" component={Home}/>
         <Route path="/commands" component={Commands}>
-          <Route path="/commands/regularCommands" component={RegularCommands}/>
-          <Route path="/commands/triggerPhrases" component={TriggerPhrases}/>
-          <Route path="/commands/scheduledCommands" component={ScheduledCommands}/>
+          <Route path="regularCommands" component={RegularCommands}/>
+          <Route path="triggerPhrases" component={TriggerPhrases}/>
+          <Route path="scheduledCommands" component={ScheduledCommands}/>
         </Route>
         <Route path="/commands/new" component={CommandForm}/>
         <Route path="/commands/:id" component={EditCommandForm}/>

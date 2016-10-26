@@ -80,7 +80,7 @@ export default class TriggerPhrases extends React.Component {
           <div className='container command-container'>
             <form className='col-md-4 col-md-offset-4' action={"/api/v1/commands/" + this.state.currentCommand.id} acceptCharset="UTF-8" method="POST">
                 <input placeholder="name" defaultValue={this.state.currentCommand.name} type="text" name="name" id="command_name"/>
-                <textarea placeholder="response" name="response" id="response_text">{this.state.currentCommand.response}</textarea>
+                <textarea placeholder="response" defaultValue={this.state.currentCommand.response} name="response" id="response_text"></textarea>
                 <input type="submit"  name="commit" value="Edit Command"/>
             </form>
           </div>

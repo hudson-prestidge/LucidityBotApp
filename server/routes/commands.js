@@ -80,6 +80,7 @@ router.post('/triggerPhrases', jsonParser, function(req, res) {
 router.post('/:id', jsonParser, function(req, res) {
   db.updateCommand(req.params.id, req.body.name, req.body.response)
     .then(function(data){
+      res.redirect('back')
     })
 })
 
