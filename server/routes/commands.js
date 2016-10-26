@@ -71,7 +71,13 @@ router.post('/', jsonParser, function(req, res) {
     })
 })
 
-router.put('/:id', function(req, res) {
+router.post('/triggerPhrases', jsonParser, function(req, res) {
+  db.addTrigger(req.body.name, req.body.response)
+    .then(function(data){
+    })
+})
+
+router.post('/:id', jsonParser, function(req, res) {
   db.updateCommand(req.params.id, req.body.name, req.body.response)
     .then(function(data){
     })

@@ -21,12 +21,11 @@ export default class TriggerPhrases extends React.Component {
 
   showEditForm(id) {
     this.setState({display: 'edit',
-                   currentId: id })
+                   currentCommand: this.state.commands.find((command) => command.id==id) })
   }
 
-  showAddForm(id) {
-    this.setState({display: 'add',
-                   currentId: id })
+  showAddForm() {
+    this.setState({display: 'add'})
   }
 
   getTriggerPhrases(){
@@ -45,7 +44,9 @@ export default class TriggerPhrases extends React.Component {
   }
 
   handleSubmit(){
+    console.log('is this really running', this.state.display);
     this.setState({display: 'list'})
+    return true
   }
 
   componentDidMount(){
@@ -53,13 +54,14 @@ export default class TriggerPhrases extends React.Component {
   }
 
   render () {
+    var self = this
     return (
       <div>
         { this.state.display=='add' ?
         <div>
           <h1> Set up a new <abbr title='the bot will respond whenever it sees this phrase anywhere in chat'>trigger</abbr> phrase </h1>
           <div className='container command-container'>
-            <form className='col-md-4 col-md-offset-4' action="/api/v1/commands" method="POST" onSubmit={this.handleSubmit()}>
+            <form className='col-md-4 col-md-offset-4' action="/api/v1/commands/triggerPhrases" method="POST" onSubmit={() => this.handleSubmit()}>
               <label htmlFor="command_name">Command Name</label>
               <input placeholder="name" type="text" name="name" id="command_name"/>
 
@@ -76,10 +78,10 @@ export default class TriggerPhrases extends React.Component {
       { this.state.display=='edit' ?
         <div>
           <div className='container command-container'>
-            <form className='col-md-4 col-md-offset-4' action="/api/v1/commands/3" acceptCharset="UTF-8" method="PUT">
-                <input placeholder="name" type="text" name="name" id="command_name"/>
-                <textarea placeholder="response" name="response" id="response_text"></textarea>
-                <input type="submit" name="commit" value="Edit Command"/>
+            <form className='col-md-4 col-md-offset-4' action={"/api/v1/commands/" + this.state.currentCommand.id} acceptCharset="UTF-8" method="POST">
+                <input placeholder="name" defaultValue={this.state.currentCommand.name} type="text" name="name" id="command_name"/>
+                <textarea placeholder="response" name="response" id="response_text">{this.state.currentCommand.response}</textarea>
+                <input type="submit"  name="commit" value="Edit Command"/>
             </form>
           </div>
           <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/' > Back </Link>
@@ -109,7 +111,7 @@ export default class TriggerPhrases extends React.Component {
                   : null}
               </tbody>
             </table>
-          <Link className='col-md-2 col-md-offset-5 addbutton' to='/commands/new' > Add New Phrase </Link>
+            <button onClick={() => this.showAddForm()}> Create New Trigger Phrase </button>
         </div>
         : null
       }
