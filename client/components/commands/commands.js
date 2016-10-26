@@ -1,5 +1,4 @@
 import React from 'react'
-import $ from 'jquery'
 import { Link } from 'react-router'
 import Command from './command'
 import CommandNavbar from './CommandNavbar'

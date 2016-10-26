@@ -1,15 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router'
-import $ from 'jquery'
+import request from 'superagent'
 
 export default class Navbar extends React.Component {
 
   logout () {
-    console.log('clicking the logout button');
-    $.ajax({
-      method: 'get',
-      url: '/logout'
-    })
+    request.post('/logout')
+      .end((err, res) => {})
   }
 
   render () {
@@ -19,7 +16,7 @@ export default class Navbar extends React.Component {
         <Link className='col-md-2 navbutton' to='/home' > Home </Link>
         <Link className='col-md-2 navbutton' to='/commands' > Commands </Link>
         <Link className='col-md-2 navbutton' to='/stats' > Stats </Link>
-        <button className='logout-btn' onClick={this.logout}> Logout </button>
+        <button className='logout-btn' onClick={this.logout} href='/login'> Logout </button>
       </div>
     )
   }

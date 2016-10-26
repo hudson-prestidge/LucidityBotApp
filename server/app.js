@@ -72,7 +72,7 @@ app.post('/login',
   (req, res) => res.redirect('/')
 )
 
-app.get('/logout',
+app.post('/logout',
   (req, res) => {
     req.logout()
     res.redirect('/login')

@@ -1,5 +1,5 @@
 import React from 'react'
-import $ from 'jquery'
+import request from 'superagent'
 import rcjs from 'react-chartjs'
 import { Link } from 'react-router'
 
@@ -10,20 +10,18 @@ export default class MostObnoxiousUsers extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      interval: null
     }
   }
 
   componentDidMount(){
     this.getChartInfo()
-    setInterval(() => this.getChartInfo() , 3000)
+    this.state.interval = setInterval(() => this.getChartInfo() , 3000)
   }
 
-  getChartInfo(){
-    $.ajax({
-      method: 'get',
-      url: '/api/v1/users/obnoxious',
-      success: data => this.setState({obnoxiousUserData: data})
-    })
+  getChartInfo() {
+    request('/api/v1/users/obnoxious')
+      .end( (err, res) => this.setState({obnoxiousUserData: JSON.parse(res.text)}) )
   }
 
   getObnoxiousUserChartData(){
@@ -59,5 +57,9 @@ export default class MostObnoxiousUsers extends React.Component {
         <div className='legend'>Most <abbr title="Users who mention the streamer by name the most"> Obnoxious</abbr> Users</div>
       </div>
     )
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.interval)
   }
 }

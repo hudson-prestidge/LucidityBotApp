@@ -1,5 +1,5 @@
 import React from 'react'
-import $ from 'jquery'
+import request from 'superagent'
 import rcjs from 'react-chartjs'
 import { Link } from 'react-router'
 
@@ -10,20 +10,18 @@ export default class MostUsedWords extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      interval: null
     }
   }
 
   componentDidMount(){
     this.getChartInfo()
-    setInterval(() => this.getChartInfo() , 3000)
+    this.state.interval = setInterval(() => this.getChartInfo() , 3000)
   }
 
   getChartInfo() {
-    $.ajax({
-      method: 'get',
-      url: '/api/v1/words',
-      success: data => { this.setState({wordUsageData: data}) }
-    })
+    request('/api/v1/words')
+      .end( (err, res) => this.setState({wordUsageData: JSON.parse(res.text)}) )
   }
 
   getWordUsageChartData(){
@@ -59,5 +57,9 @@ export default class MostUsedWords extends React.Component {
         <div className='legend'>Most Used Words</div>
       </div>
     )
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.interval)
   }
 }
