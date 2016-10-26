@@ -43,12 +43,6 @@ export default class TriggerPhrases extends React.Component {
       })
   }
 
-  handleSubmit(){
-    console.log('is this really running', this.state.display);
-    this.setState({display: 'list'})
-    return true
-  }
-
   componentDidMount(){
     this.getTriggerPhrases()
   }

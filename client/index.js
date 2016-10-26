@@ -24,8 +24,6 @@ import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
           <Route path="triggerPhrases" component={TriggerPhrases}/>
           <Route path="scheduledCommands" component={ScheduledCommands}/>
         </Route>
-        <Route path="/commands/new" component={CommandForm}/>
-        <Route path="/commands/:id" component={EditCommandForm}/>
 
         <Route path="/stats" component = {Stats}>
           <Route path="/stats/activeusers" component={MostActiveUsersGraph}/>
