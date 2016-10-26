@@ -65,7 +65,7 @@ export default class TriggerPhrases extends React.Component {
               <input type="submit" name="commit" value="Create Command"/>
             </form>
           </div>
-          <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/' > Back </Link>
+          <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/triggerPhrases' > Back </Link>
         </div>
         : null
       }
@@ -78,7 +78,7 @@ export default class TriggerPhrases extends React.Component {
                 <input type="submit"  name="commit" value="Edit Command"/>
             </form>
           </div>
-          <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/' > Back </Link>
+          <Link className='col-md-2 col-md-offset-5 navbutton' to='/commands/triggerPhrases' > Back </Link>
         </div>
         : null
       }
@@ -86,6 +86,7 @@ export default class TriggerPhrases extends React.Component {
       { this.state.display=='list' ?
         <div>
             <h1> List of Bot Trigger Phrases </h1>
+            <button onClick={() => this.showAddForm()}> Create New Trigger Phrase </button>
             <table>
               <thead>
                 <tr>
