@@ -7,7 +7,9 @@
     "start": "nodemon server/server.js",
     "dev": "NODE_ENV=development npm-run-all -p dev:*",
     "build": "browserify client/index.js -o public/bundle.js -t babelify -dv",
-    "dev:watch": "watchify client/index.js -o public/bundle.js -t babelify -dv"
+    "dev:watch": "watchify client/index.js -o public/bundle.js -t babelify -dv",
+    "test": "npm run api-test",
+    "api-test": "node tests/api/*.js | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,9 @@
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "supertest": "^2.0.1",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.2",
     "watchify": "^3.7.0"
   },
   "dependencies": {
