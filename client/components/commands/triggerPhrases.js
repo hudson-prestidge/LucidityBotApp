@@ -55,12 +55,14 @@ export default class TriggerPhrases extends React.Component {
         <div>
           <h1> Set up a new <abbr title='the bot will respond whenever it sees this phrase anywhere in chat'>trigger</abbr> phrase </h1>
           <div className='container command-container'>
-            <form className='col-md-4 col-md-offset-4' action="/api/v1/commands/triggerPhrases" method="POST">
+            <form className='col-md-4 col-md-offset-4' action="/api/v1/commands/" method="POST">
               <label htmlFor="command_name">Command Name</label>
               <input placeholder="name" type="text" name="name" id="command_name"/>
 
               <label htmlFor="response_text">Command Response</label>
               <textarea placeholder="response" name="response" id="response_text"></textarea>
+
+              <input type="hidden" name="trigger" value="true" />
 
               <input type="submit" name="commit" value="Create Command"/>
             </form>

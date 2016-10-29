@@ -3,6 +3,8 @@ var knex = require('knex')(config)
 var _ = require('underscore')
 var commonWords = require('./commonwords')
 
+var RIOT_GAMES_API_KEY = process.env.RIOT_GAMES_API_KEY
+
 var getAllCommands = () => knex('commands')
 
 var getRegularCommands = () => knex('commands').where('trigger', false)
@@ -13,9 +15,7 @@ var getScheduledCommands = () => knex('commands').innerJoin('scheduled_commands'
 
 var updateScheduledCommand = (id, frequency) => knex('scheduled_commands').where('id', id).update('frequency', frequency)
 
-var addCommand = (name, response) => knex('commands').insert({ name, response, trigger: false })
-
-var addTrigger = (name, response) => knex('commands').insert({ name, response, trigger: true })
+var addCommand = ( obj ) => knex('commands').insert({ name: obj.name, response: obj.response, trigger: obj.trigger})
 
 var addScheduledCommand = id => knex('scheduled_commands').insert({ command_id: id, frequency: 600 })
 
@@ -84,7 +84,6 @@ module.exports = {
   getRegularCommands,
   getTriggerPhrases,
   addCommand,
-  addTrigger,
   deleteCommand,
   updateCommand,
   getScheduledCommands,

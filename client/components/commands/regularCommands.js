@@ -62,6 +62,8 @@ export default class RegularCommands extends React.Component {
               <label htmlFor="response_text">Command Response</label>
               <textarea placeholder="response" name="response" id="response_text"></textarea>
 
+              <input type="hidden" name="trigger" value="false" />
+
               <input type="submit" name="commit" value="Create Command"/>
             </form>
           </div>

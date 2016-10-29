@@ -45,12 +45,12 @@ router.delete('/scheduledCommands/:id/',(req, res) => {
 })
 
 router.post('/', jsonParser, (req, res) => {
-  db.addCommand(req.body.name, req.body.response)
-    .then(() => res.redirect('back'))
-})
+  var newCommand = {}
+  newCommand.name = req.body.name
+  newCommand.response = req.body.response
+  newCommand.trigger = req.body.trigger
 
-router.post('/triggerPhrases', jsonParser, (req, res) => {
-  db.addTrigger(req.body.name, req.body.response)
+  db.addCommand(newCommand)
     .then(() => res.redirect('back'))
 })
 

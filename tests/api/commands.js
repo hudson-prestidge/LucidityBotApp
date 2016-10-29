@@ -117,8 +117,9 @@ test ('/api/v1/commands/ api post route test', t => {
     .end((err, res) => {
       if(err) console.log(err)
       else {
-        console.log(res);
-        t.end()
+
       }
     })
+
+
 })
