@@ -1,5 +1,5 @@
 import React from 'react'
-import $ from 'jquery'
+import request from 'superagent'
 import rcjs from 'react-chartjs'
 import { Link } from 'react-router'
 
@@ -10,33 +10,23 @@ export default class MostObnoxiousUsers extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      interval: null
     }
   }
 
   componentDidMount(){
-    var self = this
-    self.getChartInfo()
-    setInterval(function(){
-      self.getChartInfo()
-    }, 3000)
+    this.getChartInfo()
+    this.state.interval = setInterval(() => this.getChartInfo() , 3000)
   }
 
-  getChartInfo(){
-    var self = this
-    $.ajax({
-      method: 'get',
-      url: '/api/v1/users/obnoxious',
-      success: function(data){
-        self.setState({obnoxiousUserData: data})
-      }
-    })
+  getChartInfo() {
+    request('/api/v1/users/obnoxious')
+      .end( (err, res) => this.setState({obnoxiousUserData: JSON.parse(res.text)}) )
   }
 
   getObnoxiousUserChartData(){
     var newObj = {
-      labels: this.state.obnoxiousUserData.map(function(r){
-        return r.name
-      }),
+      labels: this.state.obnoxiousUserData.map(r => r.name ),
       datasets:[{
         label: "My First dataset",
         fillColor: [
@@ -54,9 +44,7 @@ export default class MostObnoxiousUsers extends React.Component {
             'rgba(153, 102, 255, 1)'
         ],
         borderWidth: 1,
-        data: this.state.obnoxiousUserData.map(function(r){
-          return r.count
-        })
+        data: this.state.obnoxiousUserData.map(r => r.count )
       }]
     }
     return newObj
@@ -69,5 +57,9 @@ export default class MostObnoxiousUsers extends React.Component {
         <div className='legend'>Most <abbr title="Users who mention the streamer by name the most"> Obnoxious</abbr> Users</div>
       </div>
     )
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.interval)
   }
 }

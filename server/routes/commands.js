@@ -5,92 +5,63 @@ var router = express.Router();
 
 var jsonParser = bodyParser.urlencoded({ extended: false })
 
-router.get('/', function(req, res){
+router.get('/',(req, res) => {
   db.getAllCommands()
-  .then(function(commands) {
-      res.send(commands)
-  })
-  .catch(function(err){
-    console.log(err)
-  })
+  .then(commands => res.send(commands))
+  .catch(err => console.log(err))
 })
 
-router.get('/regularCommands', function(req, res) {
+router.get('/regularCommands', (req, res) => {
   db.getRegularCommands()
-    .then(function(commands) {
-        res.send(commands)
-    })
-    .catch(function(err){
-      console.log(err)
-    })
+    .then(commands => res.send(commands))
+    .catch(err => console.log(err))
 })
 
-router.get('/triggerPhrases', function(req, res) {
+router.get('/triggerPhrases',(req, res) => {
   db.getTriggerPhrases()
-    .then(function(commands) {
-        res.send(commands)
-    })
-    .catch(function(err){
-      console.log(err)
-    })
+    .then(commands => res.send(commands))
+    .catch(err => console.log(err))
 })
 
-router.get('/scheduledCommands', function(req, res) {
+router.get('/scheduledCommands',(req, res) => {
   db.getScheduledCommands()
-    .then(function(commands) {
-        res.send(commands)
-    })
-    .catch(function(err){
-      console.log(err)
-    })
+    .then(commands => res.send(commands))
+    .catch(err => console.log(err))
 })
 
-router.post('/scheduledCommands/new/:id', function(req, res) {
+router.post('/scheduledCommands/new/:id', (req, res) => {
   db.addScheduledCommand(req.params.id)
-    .then(function(data){
-      res.sendStatus(200)
-    })
+    .then(() => res.sendStatus(200))
 })
 
-router.post('/scheduledCommands/:id/', jsonParser, function(req, res) {
+router.post('/scheduledCommands/:id/', jsonParser, (req, res) => {
   db.updateScheduledCommand(req.params.id, req.body.frequency)
-    .then(function(data){
-    })
+    .then(() => { })
 })
 
-router.delete('/scheduledCommands/:id/', function(req, res) {
+router.delete('/scheduledCommands/:id/',(req, res) => {
   db.deleteScheduledCommand(req.params.id)
-    .then(function(data){
-      res.sendStatus(200)
-    })
+    .then(() => res.sendStatus(200))
 })
 
-router.post('/', jsonParser, function(req, res) {
+router.post('/', jsonParser, (req, res) => {
   db.addCommand(req.body.name, req.body.response)
-    .then(function(data){
-      res.redirect('back')
-    })
+    .then(() => res.redirect('back'))
 })
 
-router.post('/triggerPhrases', jsonParser, function(req, res) {
+router.post('/triggerPhrases', jsonParser, (req, res) => {
   db.addTrigger(req.body.name, req.body.response)
-    .then(function(data){
-      res.redirect('back')
-    })
+    .then(() => res.redirect('back'))
 })
 
-router.post('/:id', jsonParser, function(req, res) {
+router.post('/:id', jsonParser, (req, res) => {
   db.updateCommand(req.params.id, req.body.name, req.body.response)
-    .then(function(data){
-      res.redirect('back')
-    })
+    .then(() => res.redirect('back'))
 })
 
-router.delete('/:id', function(req, res) {
+router.delete('/:id', (req, res) => {
   db.deleteCommand(req.params.id)
-    .then(function(data){
-      res.sendStatus(200)
-    })
+    .then(() => res.sendStatus(200))
 })
 
 module.exports = router

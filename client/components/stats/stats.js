@@ -1,5 +1,4 @@
 import React from 'react'
-import $ from 'jquery'
 import rcjs from 'react-chartjs'
 import { Link } from 'react-router'
 import StatsNavbar from './statsNavbar'

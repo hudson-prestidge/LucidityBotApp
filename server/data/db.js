@@ -3,94 +3,44 @@ var knex = require('knex')(config)
 var _ = require('underscore')
 var commonWords = require('./commonwords')
 
-function getAllCommands() {
-  return knex('commands')
-}
+var getAllCommands = () => knex('commands')
 
-function getRegularCommands() {
-  return knex('commands')
-        .where('trigger', false)
-}
+var getRegularCommands = () => knex('commands').where('trigger', false)
 
-function getTriggerPhrases() {
-  return knex('commands')
-        .where('trigger', true)
-}
+var getTriggerPhrases = () => knex('commands').where('trigger', true)
 
-function getScheduledCommands() {
-  return knex('commands')
-      .innerJoin('scheduled_commands', 'scheduled_commands.command_id','commands.id')
-}
+var getScheduledCommands = () => knex('commands').innerJoin('scheduled_commands', 'scheduled_commands.command_id','commands.id')
 
-function updateScheduledCommand(id, frequency) {
-  return knex('scheduled_commands')
-        .where('id', id)
-        .update('frequency', frequency)
-}
+var updateScheduledCommand = (id, frequency) => knex('scheduled_commands').where('id', id).update('frequency', frequency)
 
-function addCommand(name, response) {
-  return knex('commands')
-    .insert({
-      name,
-      response,
-      trigger: false
-    })
-}
+var addCommand = (name, response) => knex('commands').insert({ name, response, trigger: false })
 
-function addTrigger(name, response) {
-  return knex('commands')
-    .insert({
-      name,
-      response,
-      trigger: true
-    })
-}
+var addTrigger = (name, response) => knex('commands').insert({ name, response, trigger: true })
 
-function addScheduledCommand(id) {
-  return knex('scheduled_commands')
-        .insert({
-          command_id: id,
-          frequency: 600
-        })
-}
+var addScheduledCommand = id => knex('scheduled_commands').insert({ command_id: id, frequency: 600 })
 
-function deleteCommand(commandId) {
-  return knex('commands')
-    .where('id', commandId)
-    .del()
-}
+var deleteCommand = id => knex('commands').where('id', id).del()
 
-function deleteScheduledCommand(commandId) {
-  return knex('scheduled_commands')
-    .where('id', commandId)
-    .del()
-}
+var deleteScheduledCommand = id => knex('scheduled_commands').where('id', id).del()
 
-function updateCommand(commandId, name, response) {
-  return knex('commands')
-    .where('id', commandId)
-    .update({
-      name: name,
-      response: response
-    })
-}
+var updateCommand = (id, name, response) => knex('commands').where('id', id).update({ name: name, response: response })
 
-function getMostUsedWords() {
+var getMostUsedWords = () => {
   return knex.select('text')
     .from('messages')
-    .then(function(data){
+    .then(data => {
       return _.chain(data)
-        .reduce(function(m, r){return m.concat(r.text.split(' '))}, [])
-        .countBy(function(e){return e.toLowerCase()})
+        .reduce((m, r) =>  m.concat(r.text.split(' ')), [])
+        .countBy(e => e.toLowerCase())
         .pairs()
-        .filter(function(w){return commonWords.indexOf(w[0]) == -1})
-        .sortBy(function(a){return -a[1]})
+        .filter(w => commonWords.indexOf(w[0]) == -1)
+        .sortBy(a => -a[1])
         .first(10)
         .value()
     })
 }
 
-function getMostObnoxiousUsers(){
+var getMostObnoxiousUsers = () => {
   return knex.select('user_id', 'name')
     .count('*')
     .from('messages')
@@ -102,7 +52,7 @@ function getMostObnoxiousUsers(){
     .limit(10)
 }
 
-function getMostActiveUserIds() {
+var getMostActiveUserIds = () => {
   return knex.select('user_id', 'name')
     .count('*')
     .from('messages')
@@ -112,7 +62,7 @@ function getMostActiveUserIds() {
     .limit(10)
 }
 
-function getUserMessageCount(userId) {
+ var getUserMessageCount = userId => {
   return knex.select('user_id')
     .count('*')
     .from('messages')
@@ -120,16 +70,9 @@ function getUserMessageCount(userId) {
     .groupBy('user_id')
 }
 
-function getUserInfo(user){
-  var userInfo = {
-    messageCount: getUserMessageCount(user)
-  }
-}
+var getUserInfo = user => {var userInfo = { messageCount: getUserMessageCount(user) }}
 
-function getUserById(id){
-  return knex('users')
-    .where('id', id)
-}
+var getUserById = id => knex('users').where('id', id)
 
 module.exports = {
   getMostActiveUserIds,

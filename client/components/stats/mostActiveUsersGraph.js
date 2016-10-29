@@ -1,7 +1,7 @@
 import React from 'react'
-import $ from 'jquery'
 import rcjs from 'react-chartjs'
 import { Link } from 'react-router'
+import request from 'superagent'
 
 var BarChart = rcjs.Bar
 
@@ -10,33 +10,23 @@ export default class MostActiveUsers extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      interval: null
     }
   }
 
   componentDidMount(){
-    var self = this
-    self.getChartInfo()
-    setInterval(function(){
-      self.getChartInfo()
-    }, 3000)
+    this.getChartInfo()
+    this.state.interval = setInterval(() => { this.getChartInfo() }, 3000)
   }
 
   getChartInfo() {
-  var self = this
-  $.ajax({
-    method: 'get',
-    url: '/api/v1/users',
-    success: function(data){
-      self.setState({activeUserData: data})
-    }
-  })
-}
+    request('/api/v1/users')
+      .end( (err, res) => this.setState({activeUserData: JSON.parse(res.text)}) )
+  }
 
   getActiveUserChartData(){
     var newObj = {
-      labels: this.state.activeUserData.map(function(r){
-        return r.name
-      }),
+      labels: this.state.activeUserData.map(r => r.name ),
       datasets:[{
         label: "My First dataset",
         fillColor: [
@@ -54,9 +44,7 @@ export default class MostActiveUsers extends React.Component {
             'rgba(153, 102, 255, 1)'
         ],
         borderWidth: 1,
-        data: this.state.activeUserData.map(function(r){
-          return r.count
-        })
+        data: this.state.activeUserData.map(r => r.count)
       }]
     }
     return newObj
@@ -69,5 +57,9 @@ export default class MostActiveUsers extends React.Component {
         <div className='legend'>Most Active Users</div>
       </div>
     )
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.interval)
   }
 }

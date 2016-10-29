@@ -19,12 +19,9 @@ So much styling!
 
 updates for Commands Table:
 scrollable list? pages of commands? giant wall of commands is not terribly approachable
-scheduled command implementation + list of them
-restful routes for commands
 
 updates for stats page:
 I want more graphs and more varied graphs!
-
 
 stats page:
 individual user stats
@@ -39,4 +36,7 @@ create table of commands
 There's a bug with the scheduled commands currently: when one is removed, the
 display of the frequency for the others breaks in some as yet unexplored way.
 
-many functions need to be converted to es6, and the jquery stuff needs to be moved to superagent. goals for weds!
+tests to  be written:
+test all api routes
+test functions as possible
+integration testing
