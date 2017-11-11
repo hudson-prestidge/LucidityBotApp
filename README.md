@@ -1,5 +1,9 @@
 # LucidityBotApp
 
+first goal; persistent sessions.
+second goal: convert react.createclass to regular js classes.
+third goal: serve more user stats from the user/id route, and make it more robust
+
 
 okay let's work out some stats we can serve!
 

@@ -11,6 +11,7 @@ import Stats from './components/stats/stats'
 import MostActiveUsersGraph from './components/stats/mostActiveUsersGraph'
 import MostObnoxiousUsersGraph from './components/stats/mostObnoxiousUsersGraph'
 import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
+import UserStats from './components/stats/userStats'
 
   render(
     <Router history={browserHistory}>
@@ -27,6 +28,7 @@ import MostUsedWordsGraph from './components/stats/mostUsedWordsGraph'
           <Route path="/stats/activeusers" component={MostActiveUsersGraph}/>
           <Route path="/stats/obnoxioususers" component={MostObnoxiousUsersGraph}/>
           <Route path="/stats/mostusedwords" component={MostUsedWordsGraph}/>
+          <Route path="/stats/userstats/*" component={UserStats}/>
         </Route>
       </Route>
     </Router>

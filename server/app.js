@@ -16,6 +16,7 @@ var knex = require('knex')(config)
 var users = require('./routes/users')
 var commands = require('./routes/commands')
 var words = require('./routes/words')
+var user = require('./routes/user')
 
 var app = express()
 
@@ -27,6 +28,7 @@ app.use(express.static('public'))
 app.use('/api/v1/users/', users)
 app.use('/api/v1/commands/', commands)
 app.use('/api/v1/words/', words)
+app.use('/api/v1/user/', user)
 
 app.use(morgan('dev'))
 app.use(cookieParser())
@@ -79,14 +81,20 @@ app.post('/logout',
   }
 )
 
-app.get('/commands/*', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
+app.get('/*', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
 
-app.get('/users/*', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
-
-app.get('/stats/*', isAuthenticated, (req, res) =>  res.sendFile(path.join(__dirname, '../public', 'app.html')) )
-
-app.get('/home/*', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
-
-app.get('/', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
+// app.get('/commands/*', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
+// app.get('/commands', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
+//
+// app.get('/users/*', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
+// app.get('/users', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
+//
+// app.get('/stats/*', isAuthenticated, (req, res) =>  res.sendFile(path.join(__dirname, '../public', 'app.html')) )
+// app.get('/stats', isAuthenticated, (req, res) =>  res.sendFile(path.join(__dirname, '../public', 'app.html')) )
+//
+// app.get('/home/*', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
+// app.get('/home', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
+//
+// app.get('/', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, '../public', 'app.html')) )
 
 module.exports = app

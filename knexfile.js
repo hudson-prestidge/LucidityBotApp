@@ -6,7 +6,9 @@ module.exports = {
     client: 'postgresql',
     connection: {
       host: '127.0.0.1',
-      database: 'lucidity_bot_dev'
+      database: 'lucidity_bot_dev',
+      user: 'postgres',
+      password: 'test'
     }
   },
   staging: {
